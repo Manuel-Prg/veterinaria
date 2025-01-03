@@ -20,11 +20,33 @@
             background-color: var(--bg-color);
         }
         header {
-            background-color: var(--primary-color);
-            color: white;
+            /* Ajustar el gradiente para que sea menos opaco */
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0.7), 
+                rgba(255, 255, 255, 0.6)
+            ), url('./img/banner_2.jpg');
+            
+            /* Asegurar que la imagen de fondo se vea correctamente */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            
+            /* Añadir un mínimo de altura si es necesario */
+            min-height: 200px;
+            
+            /* Mejorar la legibilidad del texto */
+            position: relative;
+        }
+
+        /* Si necesitas mejorar la legibilidad del texto específicamente */
+        header h1, header p {
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
         nav {
             background-color: white;
@@ -272,8 +294,7 @@
 </head>
 <body>
     <header>
-        <h1>PetCare</h1>
-        <p>Cuidando a tus mascotas como si fueran nuestras</p>
+
     </header>
 
     <nav>
@@ -282,7 +303,9 @@
             <li><a href="./index.html">Inicio</a></li>
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./servicios.html">Servicios</a></li>
             <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+            <li><a href="./equipoMedico.html">Equipo M&eacute;dico</a></li>
         </ul>
     </nav>
 
@@ -327,33 +350,33 @@
                     <div class="service-content">
                         <h3 class="service-title">Consulta Felina / Feline Appointment</h3>
                         <p class="service-description">Atención de médico certificado Fear Free (Libre de miedo)</p>
-                        <a href="#" class="read-more">Leer más</a>
+                        <a href="./agendarCita.html?service=consulta-felina&price=600&duration=40&title=Consulta Felina / Feline Appointment&description=Atención de médico certificado Fear Free (Libre de miedo)" class="read-more">Agendar cita</a>
                         <div class="service-details">
                             <span class="service-duration">40 min</span>
                             <span class="service-price">$600</span>
                         </div>
                     </div>
                 </div>
-
+        
                 <div class="service-card">
                     <img src="./img/seguimiento_felino.jpg" alt="Seguimiento Felino" class="service-image">
                     <div class="service-content">
                         <h3 class="service-title">Seguimiento Felino / Feline Follow-up</h3>
                         <p class="service-description">Atención de un médico certificado Fear Free</p>
-                        <a href="#" class="read-more">Leer más</a>
+                        <a href="./agendarCita.html?service=seguimiento-felino&price=450&duration=20&title=Seguimiento Felino / Feline Follow-up&description=Atención de un médico certificado Fear Free" class="read-more">Agendar cita</a>
                         <div class="service-details">
                             <span class="service-duration">20 min</span>
                             <span class="service-price">$450</span>
                         </div>
                     </div>
                 </div>
-
+        
                 <div class="service-card">
                     <img src="./img/vacunación_felina.jpg" alt="Vacunación Felina" class="service-image">
                     <div class="service-content">
                         <h3 class="service-title">Vacunación Felina / Feline Vaccination</h3>
                         <p class="service-description">Atención de médico certificado Fear Free (Libre de miedo)</p>
-                        <a href="#" class="read-more">Leer más</a>
+                        <a href="./agendarCita.html?service=vacunacion-felina&price=400&duration=25&title=Vacunación Felina / Feline Vaccination&description=Atención de médico certificado Fear Free (Libre de miedo)" class="read-more">Agendar cita</a>
                         <div class="service-details">
                             <span class="service-duration">25 min</span>
                             <span class="service-price">$400</span>

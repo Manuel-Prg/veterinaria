@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Médico - PetCare</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 20px 0;
+        }
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .member-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .member-content {
+            padding: 20px;
+        }
+        .member-name {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .member-role {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .member-description {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        .member-certificates {
+            margin-top: 15px;
+        }
+        .certificate {
+            background-color: var(--bg-color);
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PetCare</h1>
+        <p>Cuidando a tus mascotas como si fueran nuestras</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./servicios.html">Servicios</a></li>
+            <li><a href="./equipo-medico.html">Equipo Médico</a></li>
+            <li><a href="./agendarCita.html">Agendar Cita</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Nuestro Equipo Médico</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="./img/medicos/bryan_perfil.jpg" alt="Dr. Bryan Rodríguez" class="member-image">
+                <div class="member-content">
+                    <h3 class="member-name">Dra. Bryan Rodríguez</h3>
+                    <p class="member-role">Veterinario Especialista en Felinos</p>
+                    <p class="member-description">El Dr. Bryan Rodríguez es nuestro especialista en cuidado de gatos. Tiene cuenta con más de 10 años de experiencia en el cuidado de gatos. Su enfoque en técnicas de manejo libre de estrés la hace una favorita entre nuestros pacientes felinos.</p>
+                    <div class="member-certificates">
+                        <span class="certificate">Fear Free Certified</span>
+                        <span class="certificate">Especialista en Medicina Felina</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="/placeholder.svg?height=300&width=300" alt="Dr. Carlos Rodríguez" class="member-image">
+                <div class="member-content">
+                    <h3 class="member-name">Dr. Carlos Rodríguez</h3>
+                    <p class="member-role">Veterinario Cirujano</p>
+                    <p class="member-description">El Dr. Rodríguez es nuestro experto en cirugía veterinaria. Con una amplia experiencia en procedimientos complejos, garantiza el mejor cuidado para nuestros pacientes que requieren intervenciones quirúrgicas.</p>
+                    <div class="member-certificates">
+                        <span class="certificate">Cirujano Veterinario Certificado</span>
+                        <span class="certificate">Especialista en Anestesia Veterinaria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Nuestras Vacunas</h2>
+        <p>En PetCare, utilizamos vacunas de la más alta calidad para proteger a tus mascotas. Nuestro protocolo de vacunación incluye:</p>
+        <ul>
+            <li>Vacuna contra la Rabia</li>
+            <li>Vacuna Triple Felina (Panleucopenia, Calicivirus, Rinotraqueítis)</li>
+            <li>Vacuna contra la Leucemia Felina</li>
+            <li>Vacuna contra el Virus de la Inmunodeficiencia Felina (opcional)</li>
+        </ul>
+        <p>Nuestros veterinarios evaluarán las necesidades específicas de tu mascota y recomendarán el mejor plan de vacunación.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
+        <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
+    </footer>
+
+    <script>
+        // Si es necesario agregar alguna funcionalidad JavaScript
+    </script>
+</body>
+</html>
+

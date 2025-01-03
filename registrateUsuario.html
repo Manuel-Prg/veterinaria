@@ -20,11 +20,33 @@
             background-color: var(--bg-color);
         }
         header {
-            background-color: var(--primary-color);
-            color: white;
+            /* Ajustar el gradiente para que sea menos opaco */
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0.7), 
+                rgba(255, 255, 255, 0.6)
+            ), url('./img/banner_2.jpg');
+            
+            /* Asegurar que la imagen de fondo se vea correctamente */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            
+            /* Añadir un mínimo de altura si es necesario */
+            min-height: 200px;
+            
+            /* Mejorar la legibilidad del texto */
+            position: relative;
+        }
+
+        /* Si necesitas mejorar la legibilidad del texto específicamente */
+        header h1, header p {
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
         nav {
             background-color: white;
@@ -147,8 +169,7 @@
 </head>
 <body>
     <header>
-        <h1>PetCare</h1>
-        <p>Cuidando a tus mascotas como si fueran nuestras</p>
+
     </header>
 
     <nav>

@@ -20,11 +20,33 @@
             background-color: var(--bg-color);
         }
         header {
-            background-color: var(--primary-color);
-            color: white;
+            /* Ajustar el gradiente para que sea menos opaco */
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0.7), 
+                rgba(255, 255, 255, 0.6)
+            ), url('./img/banner_2.jpg');
+            
+            /* Asegurar que la imagen de fondo se vea correctamente */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            
+            /* Añadir un mínimo de altura si es necesario */
+            min-height: 200px;
+            
+            /* Mejorar la legibilidad del texto */
+            position: relative;
+        }
+
+        /* Si necesitas mejorar la legibilidad del texto específicamente */
+        header h1, header p {
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
         nav {
             background-color: white;
@@ -243,8 +265,7 @@
 </head>
 <body>
     <header>
-        <h1>PetCare</h1>
-        <p>Cuidando a tus mascotas como si fueran nuestras</p>
+
     </header>
 
     <nav>
@@ -253,7 +274,7 @@
             <li><a href="./index.html">Inicio</a></li>
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+            <li><a href="./perfilUsusario.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
@@ -286,18 +307,18 @@
 
                 <div class="service-details">
                     <h3>Detalles del servicio</h3>
-                    <div class="price">$600</div>
+                    <div class="price" id="servicePrice">$600</div>
                     <div class="detail-item">
                         <span>Servicio:</span>
-                        <span>Consulta Felina / Feline Appointment</span>
+                        <span id="serviceTitle">Consulta Felina / Feline Appointment</span>
                     </div>
                     <div class="detail-item">
                         <span>Duración:</span>
-                        <span>40 minutos</span>
+                        <span id="serviceDuration">40 minutos</span>
                     </div>
                     <div class="detail-item">
-                        <span>Médico:</span>
-                        <span>Dr. Fear Free Certificado</span>
+                        <span>Descripción:</span>
+                        <span id="serviceDescription">Atención de médico certificado Fear Free (Libre de miedo)</span>
                     </div>
                     <div class="summary" id="appointmentSummary" style="display: none;">
                         <h4>Resumen de tu cita</h4>
@@ -305,6 +326,7 @@
                         <p>Hora: <span id="selectedTime"></span></p>
                         <button class="cta-button" onclick="confirmarCita()">Confirmar Cita</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>
@@ -317,6 +339,46 @@
     </footer>
 
     <script>
+    // Función para leer parámetros de la URL
+    function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            service: params.get('service'),
+            price: params.get('price'),
+            duration: params.get('duration'),
+            title: params.get('title'),
+            description: params.get('description')
+        };
+    }
+
+    // Función para actualizar los detalles del servicio
+    function updateServiceDetails() {
+        const params = getUrlParams();
+        if (params.service) {
+            document.getElementById('servicePrice').textContent = `$${params.price}`;
+            document.getElementById('serviceTitle').textContent = params.title;
+            document.getElementById('serviceDuration').textContent = `${params.duration} minutos`;
+            document.getElementById('serviceDescription').textContent = params.description;
+        }
+    }
+
+    // Modificar la función confirmarCita para incluir los detalles del servicio
+    function confirmarCita() {
+        const params = getUrlParams();
+        alert(
+            '¡Cita agendada con éxito!\n' +
+            `Servicio: ${params.title}\n` +
+            `Fecha: ${selectedDate.toLocaleDateString('es')}\n` +
+            `Hora: ${selectedTimeSlot}\n` +
+            `Precio: $${params.price}`
+        );
+    }
+
+    // Llamar a updateServiceDetails cuando se carga la página
+    window.addEventListener('load', function() {
+        updateServiceDetails();
+        generateCalendar();
+    });
         function toggleMenu() {
             var menu = document.getElementById("menu");
             menu.classList.toggle("show");
