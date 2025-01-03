@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare - Tu clínica veterinaria de confianza</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: var(--primary-color);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #e09400;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                text-align: right;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        form label {
+            font-weight: bold;
+        }
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        form button {
+            margin-top: 10px;
+        }
+        .user-icon {
+            font-size: 64px;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .banner {
+            position: relative;
+            background:  url('./img/banner.png') no-repeat;
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.3) 0%, rgba(245, 166, 35, 0.3) 100%);
+            z-index: 1;
+        }
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .banner h2 {
+            color: var(--primary-color);
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+        .banner .cta-button {
+            font-size: 1.2em;
+            padding: 15px 30px;
+            background-color: var(--secondary-color);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .banner .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 768px) {
+            .banner {
+                min-height: 400px;
+                padding: 40px 20px;
+            }
+            
+            .banner h2 {
+                font-size: 2em;
+            }
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 20px 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .service-title {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .service-details {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            margin-top: 15px;
+        }
+
+        .service-duration, .service-price {
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PetCare</h1>
+        <p>Cuidando a tus mascotas como si fueran nuestras</p>
+    </header>
+
+    <nav>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul id="menu">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./agendarCita.html">Agendar Cita</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="banner">
+        <div class="banner-content">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="./agendarCita.html" class="cta-button">Agenda tu cita ahora</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="home">
+            <h2>Bienvenido a PetCare</h2>
+            <p>En PetCare, nos dedicamos a proporcionar el mejor cuidado para tus mascotas. Nuestro equipo de veterinarios altamente calificados está listo para atender a tus animales con amor y profesionalismo.</p>
+            <p>Con años de experiencia y tecnología de vanguardia, estamos preparados para atender todas las necesidades de salud de tus animales.</p>
+        </section>
+
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="./img/consulta_felina.jpg" alt="Consulta Felina" class="service-image">
+                    <div class="service-content">
+                        <h3 class="service-title">Consulta Felina / Feline Appointment</h3>
+                        <p class="service-description">Atención de médico certificado Fear Free (Libre de miedo)</p>
+                        <a href="#" class="read-more">Leer más</a>
+                        <div class="service-details">
+                            <span class="service-duration">40 min</span>
+                            <span class="service-price">$600</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="./img/seguimiento_felino.jpg" alt="Seguimiento Felino" class="service-image">
+                    <div class="service-content">
+                        <h3 class="service-title">Seguimiento Felino / Feline Follow-up</h3>
+                        <p class="service-description">Atención de un médico certificado Fear Free</p>
+                        <a href="#" class="read-more">Leer más</a>
+                        <div class="service-details">
+                            <span class="service-duration">20 min</span>
+                            <span class="service-price">$450</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="./img/vacunación_felina.jpg" alt="Vacunación Felina" class="service-image">
+                    <div class="service-content">
+                        <h3 class="service-title">Vacunación Felina / Feline Vaccination</h3>
+                        <p class="service-description">Atención de médico certificado Fear Free (Libre de miedo)</p>
+                        <a href="#" class="read-more">Leer más</a>
+                        <div class="service-details">
+                            <span class="service-duration">25 min</span>
+                            <span class="service-price">$400</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
+        <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
+        <p>Síguenos en nuestras redes sociales para más consejos y novedades</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>
+

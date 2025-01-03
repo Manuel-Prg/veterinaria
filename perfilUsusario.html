@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario - PetCare</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: var(--primary-color);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #e09400;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                text-align: right;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        form button {
+            margin-top: 10px;
+        }
+
+        .user-icon {
+            font-size: 64px;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PetCare</h1>
+        <p>Cuidando a tus mascotas como si fueran nuestras</p>
+    </header>
+
+    <nav>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul id="menu">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./agendarCita.html">Agendar Cita</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="login">
+            <div class="user-icon">👤</div>
+            <h2 style="text-align: center;">Iniciar Sesión</h2>
+            <form>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" class="cta-button">Iniciar Sesión</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px;">¿No tienes una cuenta? <a href="./registrateUsuario.html">Regístrate aquí</a></p>
+        </section>
+
+        <section id="perfil" style="display: none;">
+            <h2>Perfil de Usuario</h2>
+            <div>
+                <h3>Información Personal</h3>
+                <p><strong>Nombre:</strong> <span id="nombreUsuario"></span></p>
+                <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
+                <button class="cta-button" onclick="editarPerfil()">Editar Perfil</button>
+            </div>
+            <div>
+                <h3>Mis Mascotas</h3>
+                <ul id="listaMascotas">
+                    <!-- Las mascotas se agregarán dinámicamente aquí -->
+                </ul>
+                <button class="cta-button" onclick="agregarMascota()">Agregar Mascota</button>
+            </div>
+            <div>
+                <h3>Próximas Citas</h3>
+                <ul id="listaCitas">
+                    <!-- Las citas se agregarán dinámicamente aquí -->
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
+        <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
+        <p>Síguenos en nuestras redes sociales para más consejos y novedades</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+
+        // Estas funciones son solo para demostración y deberían implementarse con lógica real
+        function editarPerfil() {
+            alert("Función para editar perfil");
+        }
+
+        function agregarMascota() {
+            alert("Función para agregar mascota");
+        }
+
+        // Aquí se simularía la carga de datos del usuario después del inicio de sesión
+        function cargarPerfilUsuario() {
+            document.getElementById("nombreUsuario").textContent = "Juan Pérez";
+            document.getElementById("emailUsuario").textContent = "juan@example.com";
+            
+            var listaMascotas = document.getElementById("listaMascotas");
+            listaMascotas.innerHTML = "<li>Max (Perro)</li><li>Luna (Gato)</li>";
+
+            var listaCitas = document.getElementById("listaCitas");
+            listaCitas.innerHTML = "<li>15 de junio, 2023 - Vacunación de Max</li><li>20 de junio, 2023 - Chequeo dental de Luna</li>";
+
+            document.getElementById("login").style.display = "none";
+            document.getElementById("perfil").style.display = "block";
+        }
+    </script>
+</body>
+</html>
+

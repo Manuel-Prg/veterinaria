@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita - PetCare</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: var(--primary-color);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #e09400;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                text-align: right;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+
+        /* Estilos específicos para la página de agendar cita */
+        
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .calendar {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            text-align: center;
+        }
+
+        .calendar-day {
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .calendar-day:hover:not(.disabled) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .calendar-day.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .weekday-header {
+            font-weight: bold;
+            color: var(--text-color);
+            padding: 0.5rem;
+        }
+
+        .service-details {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .service-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 1rem 0;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .time-slot {
+            padding: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover:not(.disabled) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .time-slot.disabled {
+            border-color: #ccc;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .time-slot.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .summary {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PetCare</h1>
+        <p>Cuidando a tus mascotas como si fueran nuestras</p>
+    </header>
+
+    <nav>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul id="menu">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./agendarCita.html">Agendar Cita</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="agendar">
+            <h2>Agendar Cita</h2>
+            <div class="calendar-container">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button onclick="prevMonth()">&lt;</button>
+                        <h3 id="currentMonth">Enero 2025</h3>
+                        <button onclick="nextMonth()">&gt;</button>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="weekday-header">Dom</div>
+                        <div class="weekday-header">Lun</div>
+                        <div class="weekday-header">Mar</div>
+                        <div class="weekday-header">Mié</div>
+                        <div class="weekday-header">Jue</div>
+                        <div class="weekday-header">Vie</div>
+                        <div class="weekday-header">Sáb</div>
+                    </div>
+                    <div id="calendarDays" class="calendar-grid">
+                        <!-- Los días se generarán dinámicamente -->
+                    </div>
+                    <div class="time-slots" id="timeSlots">
+                        <!-- Los horarios se generarán dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="service-details">
+                    <h3>Detalles del servicio</h3>
+                    <div class="price">$600</div>
+                    <div class="detail-item">
+                        <span>Servicio:</span>
+                        <span>Consulta Felina / Feline Appointment</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Duración:</span>
+                        <span>40 minutos</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Médico:</span>
+                        <span>Dr. Fear Free Certificado</span>
+                    </div>
+                    <div class="summary" id="appointmentSummary" style="display: none;">
+                        <h4>Resumen de tu cita</h4>
+                        <p>Fecha: <span id="selectedDate"></span></p>
+                        <p>Hora: <span id="selectedTime"></span></p>
+                        <button class="cta-button" onclick="confirmarCita()">Confirmar Cita</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
+        <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
+        <p>Síguenos en nuestras redes sociales para más consejos y novedades</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+
+        let currentDate = new Date();
+        let selectedDate = null;
+        let selectedTimeSlot = null;
+
+        function generateCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            document.getElementById('currentMonth').textContent = 
+                new Date(year, month).toLocaleString('es', { month: 'long', year: 'numeric' });
+
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDay = firstDay.getDay();
+            const totalDays = lastDay.getDate();
+
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+
+            // Agregar espacios vacíos para los días antes del primer día del mes
+            for (let i = 0; i < startDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day';
+                calendarDays.appendChild(emptyDay);
+            }
+
+            // Agregar los días del mes
+            for (let day = 1; day <= totalDays; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+
+                const dateToCheck = new Date(year, month, day);
+                if (dateToCheck < new Date().setHours(0,0,0,0)) {
+                    dayElement.classList.add('disabled');
+                } else {
+                    dayElement.onclick = () => selectDate(day);
+                }
+
+                calendarDays.appendChild(dayElement);
+            }
+
+            generateTimeSlots();
+        }
+
+        function generateTimeSlots() {
+            const timeSlots = document.getElementById('timeSlots');
+            timeSlots.innerHTML = '';
+
+            const hours = ['9:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
+            
+            hours.forEach(hour => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = hour;
+                slot.onclick = () => selectTimeSlot(hour);
+                timeSlots.appendChild(slot);
+            });
+        }
+
+        function selectDate(day) {
+            const allDays = document.querySelectorAll('.calendar-day');
+            allDays.forEach(d => d.classList.remove('selected'));
+
+            const selectedDay = Array.from(allDays).find(d => d.textContent === day.toString());
+            if (selectedDay) {
+                selectedDay.classList.add('selected');
+                selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                updateSummary();
+            }
+        }
+
+        function selectTimeSlot(time) {
+            const allSlots = document.querySelectorAll('.time-slot');
+            allSlots.forEach(slot => slot.classList.remove('selected'));
+
+            const selectedSlot = Array.from(allSlots).find(slot => slot.textContent === time);
+            if (selectedSlot) {
+                selectedSlot.classList.add('selected');
+                selectedTimeSlot = time;
+                updateSummary();
+            }
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('appointmentSummary');
+            if (selectedDate && selectedTimeSlot) {
+                document.getElementById('selectedDate').textContent = selectedDate.toLocaleDateString('es');
+                document.getElementById('selectedTime').textContent = selectedTimeSlot;
+                summary.style.display = 'block';
+            }
+        }
+
+        function prevMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            generateCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            generateCalendar();
+        }
+
+        function confirmarCita() {
+            alert('¡Cita agendada con éxito!\nFecha: ' + selectedDate.toLocaleDateString('es') + '\nHora: ' + selectedTimeSlot);
+        }
+
+        // Inicializar el calendario
+        generateCalendar();
+    </script>
+</body>
+</html>
+
