@@ -20,30 +20,20 @@
             background-color: var(--bg-color);
         }
         header {
-            /* Ajustar el gradiente para que sea menos opaco */
             background: linear-gradient(to right, 
                 rgba(255, 255, 255, 0.7), 
                 rgba(255, 255, 255, 0.6)
             ), url('./img/banner_2.jpg');
-            
-            /* Asegurar que la imagen de fondo se vea correctamente */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
             color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            
-            /* Añadir un mínimo de altura si es necesario */
             min-height: 200px;
-            
-            /* Mejorar la legibilidad del texto */
             position: relative;
         }
-
-        /* Si necesitas mejorar la legibilidad del texto específicamente */
         header h1, header p {
             position: relative;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
@@ -141,11 +131,9 @@
             max-width: 400px;
             margin: 0 auto;
         }
-
         form label {
             font-weight: bold;
         }
-
         form input,
         form select {
             width: 100%;
@@ -154,68 +142,54 @@
             border-radius: 4px;
             font-size: 16px;
         }
-
         form button {
             margin-top: 10px;
         }
-
         .user-icon {
             font-size: 64px;
             color: var(--primary-color);
             text-align: center;
             margin-bottom: 20px;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes slideInLeft {
             from { transform: translateX(-100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-
         @keyframes slideInBottom {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
-
         .slide-in-left {
             animation: slideInLeft 1s ease-in-out;
         }
-
         .slide-in-bottom {
             animation: slideInBottom 1s ease-in-out;
         }
-
-        /* Estilos para el menú hamburguesa */
         .hamburger {
             display: none;
             cursor: pointer;
         }
-
         #menu {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         #menu li {
             display: inline;
             margin-right: 20px;
         }
-
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
                 font-size: 24px;
             }
-
             #menu {
                 display: none;
                 flex-direction: column;
@@ -226,11 +200,9 @@
                 background-color: #f9f9f9;
                 text-align: center;
             }
-
             #menu.show {
                 display: flex;
             }
-
             #menu li {
                 display: block;
                 margin: 10px 0;
@@ -240,7 +212,6 @@
 </head>
 <body>
     <header>
-
     </header>
 
     <nav>
@@ -249,7 +220,6 @@
             <li><a href="./index.html">Inicio</a></li>
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
@@ -257,7 +227,7 @@
         <section id="login">
             <div class="user-icon">👤</div>
             <h2 style="text-align: center;">Iniciar Sesión</h2>
-            <form>
+            <form id="loginForm">
                 <label for="email">Correo electrónico:</label>
                 <input type="email" id="email" name="email" required>
 
@@ -275,14 +245,15 @@
                 <h3>Información Personal</h3>
                 <p><strong>Nombre:</strong> <span id="nombreUsuario"></span></p>
                 <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
-                <button class="cta-button" onclick="editarPerfil()">Editar Perfil</button>
+                <button class="cta-button" onclick="editarPerfilUsuario()">Editar Perfil</button>
+                <button class="cta-button" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
             </div>
             <div>
                 <h3>Mis Mascotas</h3>
                 <ul id="listaMascotas">
                     <!-- Las mascotas se agregarán dinámicamente aquí -->
                 </ul>
-                <button class="cta-button" onclick="agregarMascota()">Agregar Mascota</button>
+                <button class="cta-button" onclick="agregarMascotaUsuario()">Agregar Mascota</button>
             </div>
             <div>
                 <h3>Próximas Citas</h3>
@@ -304,30 +275,35 @@
             var menu = document.getElementById("menu");
             menu.classList.toggle("show");
         }
+    </script>
+    
+    <script type="module">
+        import { iniciarSesion, cerrarSesion } from './scripts/auth.js';
+        import { editarPerfil, agregarMascota } from './scripts/userProfile.js';
 
-        // Estas funciones son solo para demostración y deberían implementarse con lógica real
-        function editarPerfil() {
-            alert("Función para editar perfil");
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            await iniciarSesion(email, password);
+        });
+
+        window.cerrarSesionUsuario = async function() {
+            await cerrarSesion();
         }
 
-        function agregarMascota() {
-            alert("Función para agregar mascota");
+        window.editarPerfilUsuario = function() {
+            editarPerfil();
         }
 
-        // Aquí se simularía la carga de datos del usuario después del inicio de sesión
-        function cargarPerfilUsuario() {
-            document.getElementById("nombreUsuario").textContent = "Juan Pérez";
-            document.getElementById("emailUsuario").textContent = "juan@example.com";
-            
-            var listaMascotas = document.getElementById("listaMascotas");
-            listaMascotas.innerHTML = "<li>Max (Perro)</li><li>Luna (Gato)</li>";
-
-            var listaCitas = document.getElementById("listaCitas");
-            listaCitas.innerHTML = "<li>15 de junio, 2023 - Vacunación de Max</li><li>20 de junio, 2023 - Chequeo dental de Luna</li>";
-
-            document.getElementById("login").style.display = "none";
-            document.getElementById("perfil").style.display = "block";
+        window.agregarMascotaUsuario = function() {
+            agregarMascota();
         }
+    </script>
+    <script type="module">
+        import { initializeMenu } from './scripts/menuHandler.js';
+        document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
 </html>

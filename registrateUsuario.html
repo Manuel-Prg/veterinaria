@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario - PetCare</title>
+    <title>Registro de Usuario - PetCare</title>
     <style>
         :root {
             --primary-color: #4a90e2;
@@ -20,30 +20,20 @@
             background-color: var(--bg-color);
         }
         header {
-            /* Ajustar el gradiente para que sea menos opaco */
             background: linear-gradient(to right, 
                 rgba(255, 255, 255, 0.7), 
                 rgba(255, 255, 255, 0.6)
             ), url('./img/banner_2.jpg');
-            
-            /* Asegurar que la imagen de fondo se vea correctamente */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
             color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            
-            /* Añadir un mínimo de altura si es necesario */
             min-height: 200px;
-            
-            /* Mejorar la legibilidad del texto */
             position: relative;
         }
-
-        /* Si necesitas mejorar la legibilidad del texto específicamente */
         header h1, header p {
             position: relative;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
@@ -106,6 +96,8 @@
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
         .cta-button:hover {
             background-color: #e09400;
@@ -117,23 +109,6 @@
             padding: 20px;
             margin-top: 40px;
         }
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-                text-align: right;
-            }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-            }
-            nav ul.show {
-                display: flex;
-            }
-            nav ul li {
-                margin: 10px 0;
-            }
-        }
         form {
             display: flex;
             flex-direction: column;
@@ -141,11 +116,9 @@
             max-width: 400px;
             margin: 0 auto;
         }
-
         form label {
             font-weight: bold;
         }
-
         form input,
         form select {
             width: 100%;
@@ -154,68 +127,54 @@
             border-radius: 4px;
             font-size: 16px;
         }
-
         form button {
             margin-top: 10px;
         }
-
         .user-icon {
             font-size: 64px;
             color: var(--primary-color);
             text-align: center;
             margin-bottom: 20px;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes slideInLeft {
             from { transform: translateX(-100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-
         @keyframes slideInBottom {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
-
         .slide-in-left {
             animation: slideInLeft 1s ease-in-out;
         }
-
         .slide-in-bottom {
             animation: slideInBottom 1s ease-in-out;
         }
-
-        /* Estilos para el menú hamburguesa */
         .hamburger {
             display: none;
             cursor: pointer;
         }
-
         #menu {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         #menu li {
             display: inline;
             margin-right: 20px;
         }
-
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
                 font-size: 24px;
             }
-
             #menu {
                 display: none;
                 flex-direction: column;
@@ -226,21 +185,49 @@
                 background-color: #f9f9f9;
                 text-align: center;
             }
-
             #menu.show {
                 display: flex;
             }
-
             #menu li {
                 display: block;
                 margin: 10px 0;
             }
         }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .notification.success {
+            background-color: #4CAF50;
+        }
+        .notification.error {
+            background-color: #f44336;
+        }
+        .notification.show {
+            opacity: 1;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        .notification.animate {
+            animation: slideIn 0.5s ease-out;
+        }
     </style>
 </head>
 <body>
     <header>
-
     </header>
 
     <nav>
@@ -249,54 +236,27 @@
             <li><a href="./index.html">Inicio</a></li>
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+            <li id="authMenuItem"><a href="./inicioSesion.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <section id="login">
-            <div class="user-icon">👤</div>
-            <h2 style="text-align: center;">Iniciar Sesión</h2>
-            <form>
-                <label for="username">Nombre de Usuario:</label>
-                <input type="text" id="username" name="username" required>
+        <h2 style="text-align: center;">Registro de Usuario</h2>
+        <form id="registerForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" required>
 
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" required>
 
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
+            <label for="confirm-password">Confirmar Contraseña:</label>
+            <input type="password" id="confirm-password" required>
 
-                <label for="confirm-password">Confirmar Contraseña:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-
-                <button type="submit" class="cta-button">Iniciar Sesión</button>
-            </form>
-            <p style="text-align: center; margin-top: 20px;">¿Ya tienes una cuenta? <a href="./perfilUsusario.html">Inicia sesión aquí</a></p>
-        </section>
-
-        <section id="perfil" style="display: none;">
-            <h2>Perfil de Usuario</h2>
-            <div>
-                <h3>Información Personal</h3>
-                <p><strong>Nombre:</strong> <span id="nombreUsuario"></span></p>
-                <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
-                <button class="cta-button" onclick="editarPerfil()">Editar Perfil</button>
-            </div>
-            <div>
-                <h3>Mis Mascotas</h3>
-                <ul id="listaMascotas">
-                    <!-- Las mascotas se agregarán dinámicamente aquí -->
-                </ul>
-                <button class="cta-button" onclick="agregarMascota()">Agregar Mascota</button>
-            </div>
-            <div>
-                <h3>Próximas Citas</h3>
-                <ul id="listaCitas">
-                    <!-- Las citas se agregarán dinámicamente aquí -->
-                </ul>
-            </div>
-        </section>
+            <button type="submit" class="cta-button">Registrarse</button>
+        </form>
+        <p style="text-align: center; margin-top: 20px;">¿Ya tienes una cuenta? <a href="./inicioSesion.html">Inicia sesión aquí</a></p>
     </div>
 
     <footer>
@@ -311,29 +271,76 @@
             menu.classList.toggle("show");
         }
 
-        // Estas funciones son solo para demostración y deberían implementarse con lógica real
-        function editarPerfil() {
-            alert("Función para editar perfil");
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.classList.add('notification', type, 'animate');
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
         }
 
-        function agregarMascota() {
-            alert("Función para agregar mascota");
+        function updateAuthMenuItem(user) {
+            const authMenuItem = document.getElementById('authMenuItem');
+            if (user) {
+                authMenuItem.innerHTML = '<a href="./registrateUsuario.html">Perfil</a>';
+            } else {
+                authMenuItem.innerHTML = '<a href="./inicioSesion.html">Iniciar Sesión</a>';
+            }
         }
+    </script>
+    <script type="module">
+        import { auth } from './scripts/firebase-config.js';
+        import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 
-        // Aquí se simularía la carga de datos del usuario después del inicio de sesión
-        function cargarPerfilUsuario() {
-            document.getElementById("nombreUsuario").textContent = "Juan Pérez";
-            document.getElementById("emailUsuario").textContent = "juan@example.com";
-            
-            var listaMascotas = document.getElementById("listaMascotas");
-            listaMascotas.innerHTML = "<li>Max (Perro)</li><li>Luna (Gato)</li>";
 
-            var listaCitas = document.getElementById("listaCitas");
-            listaCitas.innerHTML = "<li>15 de junio, 2023 - Vacunación de Max</li><li>20 de junio, 2023 - Chequeo dental de Luna</li>";
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const registerForm = document.getElementById('registerForm');
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                const name = document.getElementById('name').value;
 
-            document.getElementById("login").style.display = "none";
-            document.getElementById("perfil").style.display = "block";
-        }
+                if (password !== confirmPassword) {
+                    showNotification('Las contraseñas no coinciden', 'error');
+                    return;
+                }
+
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    await updateProfile(userCredential.user, { displayName: name });
+                    console.log('Usuario registrado:', userCredential.user);
+                    showNotification('Usuario registrado correctamente', 'success');
+                    setTimeout(() => {
+                        window.location.href = './inicioSesion.html';
+                    }, 2000);
+                } catch (error) {
+                    console.error('Error de registro:', error);
+                    showNotification('Error de registro: ' + error.message, 'error');
+                }
+            });
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            updateAuthMenuItem(user);
+        });
+    </script>
+    <script type="module">
+        import { initializeMenu } from './scripts/menuHandler.js';
+        document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
 </html>
+

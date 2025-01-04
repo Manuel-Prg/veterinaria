@@ -358,9 +358,9 @@
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
             <li><a href="./servicios.html">Servicios</a></li>
-            <li><a href="./perfilUsusario.html">Iniciar Sesión</a></li>
             <li><a href="./equipoMedico.html">Equipo M&eacute;dico</a></li>
             <li><a href="./informacion.html">Informaci&oacute;n de Vacunas</a></li>
+            <li id="authMenuItem"><a href="./inicioSesion.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
@@ -464,12 +464,16 @@
         <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
         <p>Síguenos en nuestras redes sociales para más consejos y novedades</p>
     </footer>
-
+    <script type="module" src="./scripts/auth.js"></script>
     <script>
         function toggleMenu() {
             var menu = document.getElementById("menu");
             menu.classList.toggle("show");
         }
+    </script>
+    <script type="module">
+        import { initializeMenu } from './scripts/menuHandler.js';
+        document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
 </html>

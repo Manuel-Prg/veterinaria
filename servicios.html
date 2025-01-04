@@ -182,8 +182,8 @@
             <li><a href="./equipoMedico.html">Equipo Médico</a></li>
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
             <li><a href="./informacion.html">Informaci&oacute;n de Vacunas</a></li>
+            <li id="authMenuItem"><a href="./inicioSesion.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
@@ -379,9 +379,10 @@
         <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
         <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
     </footer>
-
-    <script>
-        // Si es necesario agregar alguna funcionalidad JavaScript
+    <script type="module" src="./scripts/auth.js"></script>
+    <script type="module">
+        import { initializeMenu } from './scripts/menuHandler.js';
+        document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
 </html>
