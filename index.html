@@ -290,6 +290,60 @@
         .read-more:hover {
             color: var(--secondary-color);
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInFromLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromBottom {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .slide-in-left {
+            animation: slideInFromLeft 0.5s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInFromRight 0.5s ease-out;
+        }
+
+        .slide-in-bottom {
+            animation: slideInFromBottom 0.5s ease-out;
+        }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e09400;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -304,8 +358,9 @@
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
             <li><a href="./servicios.html">Servicios</a></li>
-            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+            <li><a href="./perfilUsusario.html">Iniciar Sesión</a></li>
             <li><a href="./equipoMedico.html">Equipo M&eacute;dico</a></li>
+            <li><a href="./informacion.html">Informaci&oacute;n de Vacunas</a></li>
         </ul>
     </nav>
 
@@ -372,16 +427,33 @@
                 </div>
         
                 <div class="service-card">
-                    <img src="./img/vacunación_felina.jpg" alt="Vacunación Felina" class="service-image">
+                    <img src="./img/consulta_canina.jpg" alt="Consulta Canina/ Canine Appointment" class="service-image">
                     <div class="service-content">
-                        <h3 class="service-title">Vacunación Felina / Feline Vaccination</h3>
-                        <p class="service-description">Atención de médico certificado Fear Free (Libre de miedo)</p>
-                        <a href="./agendarCita.html?service=vacunacion-felina&price=400&duration=25&title=Vacunación Felina / Feline Vaccination&description=Atención de médico certificado Fear Free (Libre de miedo)" class="read-more">Agendar cita</a>
+                        <h3 class="service-title">Consulta Canina/ Canine Appointment</h3>
+                        <p class="service-description">Atención de un médico certificado Fear Free (Libre de miedo).</p>
+                        <a href="./agendarCita.html?service=consulta-felina&price=600&duration=40&title=Consulta Felina / Feline Appointment&description=Atención de médico certificado Fear Free (Libre de miedo)" class="read-more">Agendar cita</a>
                         <div class="service-details">
-                            <span class="service-duration">25 min</span>
-                            <span class="service-price">$400</span>
+                            <span class="service-duration">40 min</span>
+                            <span class="service-price">$600</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section id="testimonios">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <div class="testimonios-grid">
+                <div class="testimonio-card">
+                    <p class="testimonio-texto">"El equipo de PetCare es increíble. Siempre tratan a mi gato con mucho cariño y profesionalismo. ¡Altamente recomendados!"</p>
+                    <p class="testimonio-autor">- María García</p>
+                </div>
+                <div class="testimonio-card">
+                    <p class="testimonio-texto">"Gracias a PetCare, mi perro superó su miedo al veterinario. Su enfoque 'Fear Free' realmente hace la diferencia."</p>
+                    <p class="testimonio-autor">- Juan Pérez</p>
+                </div>
+                <div class="testimonio-card">
+                    <p class="testimonio-texto">"Los servicios de vacunación son excelentes. El personal es muy informativo y paciente con todas mis preguntas."</p>
+                    <p class="testimonio-autor">- Ana Rodríguez</p>
                 </div>
             </div>
         </section>

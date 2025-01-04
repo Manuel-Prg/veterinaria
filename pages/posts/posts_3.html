@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo reconocer signos de estrés en tu mascota - PetCare Blog</title>
+    <style>
+               :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: opacity 0.5s ease-in-out; /* Add transition for fade-in effect */
+        }
+
+        header {
+            /* Ajustar el gradiente para que sea menos opaco */
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0.7), 
+                rgba(255, 255, 255, 0.6)
+            ), url('/img/banner_2.jpg');
+            
+            /* Asegurar que la imagen de fondo se vea correctamente */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: rgb(75, 135, 204);
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            
+            /* Añadir un mínimo de altura si es necesario */
+            min-height: 200px;
+            
+            /* Mejorar la legibilidad del texto */
+            position: relative;
+        }
+
+        /* Si necesitas mejorar la legibilidad del texto específicamente */
+        header h1, header p {
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        nav {
+            background-color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #f5a623;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: #1557b0;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 960px; /* Added max-width for responsiveness */
+            margin: 2rem auto; /* Added top margin and centered */
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        h1,
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem; /* Added margin-bottom for spacing */
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Added font-size for h1 */
+        }
+
+        h2 {
+            font-size: 2rem; /* Added font-size for h2 */
+        }
+
+        .post-meta {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic; /* Added font-style */
+        }
+
+        ul,
+        ol {
+            list-style-type: disc; /* Added list-style-type */
+            margin-left: 20px; /* Added margin-left for indentation */
+            margin-bottom: 1rem; /* Added margin-bottom for spacing */
+        }
+
+        li {
+            margin-bottom: 0.5rem; /* Added margin-bottom for spacing */
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0; /* Added padding-bottom */
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    </header>
+    <nav>
+        <a href="/index.html">Inicio</a>
+        <a href="/blog.html">Volver al Blog</a>
+    </nav>
+    <div class="container">
+        <article>
+            <h1 class="fade-in">Cómo reconocer signos de estrés en tu mascota</h1>
+            <p class="post-meta fade-in">Fecha: 1 de mayo, 2023</p>
+            <img src="/img/perroGatoEstres.jpg" alt="Perro y gato mostrando signos de estrés" class="post-image fade-in">
+            <p>El estrés en las mascotas puede manifestarse de diversas formas. Aprende a reconocer las señales y a ayudar a tu compañero peludo a sentirse más tranquilo y feliz.</p>
+            <h2>Signos comunes de estrés en perros</h2>
+            <ul>
+                <li>Ladridos excesivos o aullidos</li>
+                <li>Destrucción de objetos</li>
+                <li>Lamido excesivo o mordisqueo de patas</li>
+                <li>Cambios en el apetito</li>
+                <li>Aislamiento o comportamiento agresivo</li>
+                <li>Temblores o jadeos excesivos</li>
+            </ul>
+            <h2>Signos comunes de estrés en gatos</h2>
+            <ul>
+                <li>Cambios en el uso del arenero</li>
+                <li>Exceso de acicalamiento o pérdida de pelo</li>
+                <li>Disminución del apetito</li>
+                <li>Aumento de vocalizaciones</li>
+                <li>Comportamiento agresivo o temeroso</li>
+                <li>Esconderse más de lo habitual</li>
+            </ul>
+            <h2>Causas comunes de estrés en mascotas</h2>
+            <p>El estrés en mascotas puede ser causado por diversos factores, incluyendo:</p>
+            <ul>
+                <li>Cambios en el entorno (mudanzas, remodelaciones)</li>
+                <li>Cambios en la rutina</li>
+                <li>Introducción de nuevas mascotas o miembros de la familia</li>
+                <li>Ruidos fuertes (tormentas, fuegos artificiales)</li>
+                <li>Falta de ejercicio o estimulación mental</li>
+                <li>Problemas de salud</li>
+            </ul>
+            <h2>Cómo ayudar a tu mascota estresada</h2>
+            <ol>
+                <li>Mantén una rutina constante</li>
+                <li>Proporciona un espacio seguro y tranquilo</li>
+                <li>Aumenta el ejercicio y la estimulación mental</li>
+                <li>Utiliza feromonas sintéticas o aromaterapia</li>
+                <li>Considera el uso de suplementos calmantes naturales</li>
+                <li>Consulta con tu veterinario si el estrés persiste</li>
+            </ol>
+            <h2>Conclusión</h2>
+            <p>Reconocer los signos de estrés en tu mascota es el primer paso para ayudarla. Si notas cambios persistentes en el comportamiento de tu mascota, siempre es recomendable consultar con un veterinario para descartar problemas de salud subyacentes y obtener orientación profesional sobre cómo manejar el estrés de tu compañero peludo.</p>
+        </article>
+    </div>
+    <footer>
+        <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        // Add your animation script here.  This is a placeholder.  Replace with actual script from posts_1.html
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.fade-in');
+        hiddenElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
+

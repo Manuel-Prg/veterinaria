@@ -134,6 +134,77 @@
                 margin: 10px 0;
             }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInBottom {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .slide-in-bottom {
+            animation: slideInBottom 1s ease-in-out;
+        }
+
+        /* Estilos para el menú hamburguesa */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        #menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                font-size: 24px;
+            }
+
+            #menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #f9f9f9;
+                text-align: center;
+            }
+
+            #menu.show {
+                display: flex;
+            }
+
+            #menu li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -148,6 +219,7 @@
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
             <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+            <li><a href="./informacion.html">Informaci&oacute;n de Vacunas</a></li>
         </ul>
     </nav>
 
@@ -159,19 +231,19 @@
                 <h3>5 tips para mantener a tu perro activo en casa</h3>
                 <p>Fecha: 1 de junio, 2023</p>
                 <p>Mantener a tu perro activo y entretenido en casa es crucial para su salud física y mental. Aquí te presentamos 5 consejos prácticos para lograrlo...</p>
-                <a href="#" class="cta-button">Leer más</a>
+                <a href="./pages/posts/posts_1.html" class="cta-button">Leer más</a>
             </article>
             <article>
                 <h3>La importancia de la vacunación en gatos</h3>
                 <p>Fecha: 15 de mayo, 2023</p>
                 <p>Las vacunas son esenciales para proteger a tu gato contra enfermedades graves. En este artículo, explicamos por qué es tan importante mantener al día el calendario de vacunación de tu felino...</p>
-                <a href="#" class="cta-button">Leer más</a>
+                <a href="./pages/posts/posts_2.html" class="cta-button">Leer más</a>
             </article>
             <article>
                 <h3>Cómo reconocer signos de estrés en tu mascota</h3>
                 <p>Fecha: 1 de mayo, 2023</p>
                 <p>El estrés en las mascotas puede manifestarse de diversas formas. Aprende a reconocer las señales y a ayudar a tu compañero peludo a sentirse más tranquilo y feliz...</p>
-                <a href="#" class="cta-button">Leer más</a>
+                <a href="./pages/posts/posts_3.html" class="cta-button">Leer más</a>
             </article>
         </section>
     </div>

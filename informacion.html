@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de Vacunas - PetCare</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        header {
+            /* Ajustar el gradiente para que sea menos opaco */
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0.7), 
+                rgba(255, 255, 255, 0.6)
+            ), url('./img/banner_2.jpg');
+            
+            /* Asegurar que la imagen de fondo se vea correctamente */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: rgb(75, 135, 204);
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            
+            /* Añadir un mínimo de altura si es necesario */
+            min-height: 200px;
+            
+            /* Mejorar la legibilidad del texto */
+            position: relative;
+        }
+
+        /* Si necesitas mejorar la legibilidad del texto específicamente */
+        header h1, header p {
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        nav {
+            background-color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: var(--secondary-color);
+        }
+        .vaccine-info {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./servicios.html">Servicios</a></li>
+            <li><a href="./equipoMedico.html">Equipo Médico</a></li>
+            <li><a href="./informacion.html">Información de Vacunas</a></li>
+            <li><a href="./agendarCita.html">Agendar Cita</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./perfilUsuario.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Información de Vacunas</h2>
+        
+        <div class="vaccine-info">
+            <h3>Vacunas para Gatos</h3>
+            <p>Las vacunas son esenciales para proteger a tu gato contra enfermedades graves. Aquí te presentamos las vacunas recomendadas para gatos:</p>
+            <table>
+                <tr>
+                    <th>Vacuna</th>
+                    <th>Protege contra</th>
+                    <th>Recomendada para</th>
+                </tr>
+                <tr>
+                    <td>Triple Felina (FVRCP)</td>
+                    <td>Rinotraqueítis, Calicivirus, Panleucopenia</td>
+                    <td>Todas las razas</td>
+                </tr>
+                <tr>
+                    <td>Rabia</td>
+                    <td>Virus de la rabia</td>
+                    <td>Todas las razas (obligatoria por ley)</td>
+                </tr>
+                <tr>
+                    <td>Leucemia Felina (FeLV)</td>
+                    <td>Virus de la leucemia felina</td>
+                    <td>Gatos con acceso al exterior o en contacto con otros gatos</td>
+                </tr>
+                <tr>
+                    <td>Inmunodeficiencia Felina (FIV)</td>
+                    <td>Virus de la inmunodeficiencia felina</td>
+                    <td>Gatos con alto riesgo de exposición</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="vaccine-info">
+            <h3>Vacunas para Perros</h3>
+            <p>Las vacunas son cruciales para mantener a tu perro saludable. Aquí están las vacunas recomendadas para perros:</p>
+            <table>
+                <tr>
+                    <th>Vacuna</th>
+                    <th>Protege contra</th>
+                    <th>Recomendada para</th>
+                </tr>
+                <tr>
+                    <td>Múltiple (DHPP)</td>
+                    <td>Distemper, Hepatitis, Parvovirus, Parainfluenza</td>
+                    <td>Todas las razas</td>
+                </tr>
+                <tr>
+                    <td>Rabia</td>
+                    <td>Virus de la rabia</td>
+                    <td>Todas las razas (obligatoria por ley)</td>
+                </tr>
+                <tr>
+                    <td>Bordetella</td>
+                    <td>Tos de las perreras</td>
+                    <td>Razas sociales, perros en guarderías o exposiciones</td>
+                </tr>
+                <tr>
+                    <td>Leptospirosis</td>
+                    <td>Bacterias Leptospira</td>
+                    <td>Perros con acceso al exterior, especialmente en áreas húmedas</td>
+                </tr>
+                <tr>
+                    <td>Influenza Canina</td>
+                    <td>Virus de la influenza canina</td>
+                    <td>Perros en áreas con brotes o con alto contacto social</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="vaccine-info">
+            <h3>Consideraciones Especiales por Raza</h3>
+            <p>Aunque la mayoría de las vacunas son recomendadas para todas las razas, hay algunas consideraciones especiales:</p>
+            <ul>
+                <li><strong>Gatos de pelo largo (como Persas o Maine Coons):</strong> Pueden necesitar un cuidado especial durante la vacunación para evitar que el pelo interfiera con la inyección.</li>
+                <li><strong>Razas braquicefálicas (como Bulldogs o Pugs):</strong> Pueden requerir precauciones adicionales con la vacuna intranasal de Bordetella.</li>
+                <li><strong>Razas pequeñas o toy:</strong> Pueden recibir dosis ajustadas de algunas vacunas.</li>
+                <li><strong>Razas grandes (como Gran Danés o San Bernardo):</strong> Pueden necesitar un calendario de vacunación ajustado en su etapa de crecimiento.</li>
+            </ul>
+            <p>Siempre consulta con nuestro equipo veterinario para determinar el mejor plan de vacunación para tu mascota, considerando su raza, edad, estilo de vida y estado de salud.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
+        <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
+    </footer>
+
+    <script>
+        // Si es necesario agregar alguna funcionalidad JavaScript
+    </script>
+</body>
+</html>
