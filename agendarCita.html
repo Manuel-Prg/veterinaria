@@ -20,30 +20,20 @@
             background-color: var(--bg-color);
         }
         header {
-            /* Ajustar el gradiente para que sea menos opaco */
             background: linear-gradient(to right, 
                 rgba(255, 255, 255, 0.7), 
                 rgba(255, 255, 255, 0.6)
             ), url('./img/banner_2.jpg');
-            
-            /* Asegurar que la imagen de fondo se vea correctamente */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
             color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            
-            /* Añadir un mínimo de altura si es necesario */
             min-height: 200px;
-            
-            /* Mejorar la legibilidad del texto */
             position: relative;
         }
-
-        /* Si necesitas mejorar la legibilidad del texto específicamente */
         header h1, header p {
             position: relative;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
@@ -81,21 +71,111 @@
             overflow: hidden;
             padding: 40px 0;
         }
-        .hamburger {
-            display: none;
-            font-size: 30px;
-            cursor: pointer;
-            color: var(--primary-color);
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        section {
-            background-color: white;
+        .calendar {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 1rem;
             border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        h1, h2 {
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            text-align: center;
+        }
+        .calendar-day {
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .calendar-day:hover:not(.disabled) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .calendar-day.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        .calendar-day.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .weekday-header {
+            font-weight: bold;
+            color: var(--text-color);
+            padding: 0.5rem;
+        }
+        .service-details {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .service-details h3 {
             color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 1rem 0;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .time-slot {
+            padding: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .time-slot:hover:not(.disabled) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .time-slot.disabled {
+            border-color: #ccc;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        .time-slot.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .summary {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
         }
         .cta-button {
             display: inline-block;
@@ -106,6 +186,8 @@
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
         .cta-button:hover {
             background-color: #e09400;
@@ -117,198 +199,57 @@
             padding: 20px;
             margin-top: 40px;
         }
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-                text-align: right;
-            }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-            }
-            nav ul.show {
-                display: flex;
-            }
-            nav ul li {
-                margin: 10px 0;
-            }
-        }
-
-        /* Estilos específicos para la página de agendar cita */
-        
-        .calendar-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .calendar {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.5rem;
-            text-align: center;
-        }
-
-        .calendar-day {
-            padding: 0.5rem;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .calendar-day:hover:not(.disabled) {
-            background-color: var(--primary-color);
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
             color: white;
-        }
-
-        .calendar-day.disabled {
-            color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .calendar-day.selected {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .weekday-header {
             font-weight: bold;
-            color: var(--text-color);
-            padding: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            z-index: 1000;
         }
-
-        .service-details {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .notification.success {
+            background-color: #4CAF50;
         }
-
-        .service-details h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+        .notification.error {
+            background-color: #f44336;
         }
-
-        .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin: 1rem 0;
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
         }
-
-        .detail-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .time-slots {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .time-slot {
-            padding: 0.5rem;
-            text-align: center;
-            border: 1px solid var(--primary-color);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .time-slot:hover:not(.disabled) {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .time-slot.disabled {
-            border-color: #ccc;
-            color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .time-slot.selected {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .summary {
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-        }
-        
-        @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
             }
-
-            @keyframes slideInLeft {
-                from { transform: translateX(-100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
+            to {
+                transform: translateX(0);
             }
-
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-
-            .fade-in {
-                animation: fadeIn 1s ease-in-out;
-            }
-
-            .slide-in-left {
-                animation: slideInLeft 1s ease-in-out;
-            }
-
-            .slide-in-right {
-                animation: slideInRight 1s ease-in-out;
-            }
+        }
+        .notification.animate {
+            animation: slideIn 0.5s ease-out;
+        }
     </style>
 </head>
 <body>
     <header>
-
     </header>
 
     <nav>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
         <ul id="menu">
             <li><a href="./index.html">Inicio</a></li>
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./informacion.html">Informaci&oacute;n de Vacunas</a></li>
+            <li><a href="./informacion.html">Información de Vacunas</a></li>
             <li id="authMenuItem"><a href="./inicioSesion.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
     <div class="container">
         <section id="agendar">
-            <h2>Agendar Cita</h2>
             <div class="calendar-container">
                 <div class="calendar">
                     <div class="calendar-header">
@@ -355,7 +296,6 @@
                         <button class="cta-button" onclick="confirmarCita()">Confirmar Cita</button>
                     </div>
                 </div>
-                </div>
             </div>
         </section>
     </div>
@@ -366,55 +306,85 @@
         <p>Síguenos en nuestras redes sociales para más consejos y novedades</p>
     </footer>
 
-    <script>
-    // Función para leer parámetros de la URL
-    function getUrlParams() {
-        const params = new URLSearchParams(window.location.search);
-        return {
-            service: params.get('service'),
-            price: params.get('price'),
-            duration: params.get('duration'),
-            title: params.get('title'),
-            description: params.get('description')
-        };
-    }
-
-    // Función para actualizar los detalles del servicio
-    function updateServiceDetails() {
-        const params = getUrlParams();
-        if (params.service) {
-            document.getElementById('servicePrice').textContent = `$${params.price}`;
-            document.getElementById('serviceTitle').textContent = params.title;
-            document.getElementById('serviceDuration').textContent = `${params.duration} minutos`;
-            document.getElementById('serviceDescription').textContent = params.description;
-        }
-    }
-
-    // Modificar la función confirmarCita para incluir los detalles del servicio
-    function confirmarCita() {
-        const params = getUrlParams();
-        alert(
-            '¡Cita agendada con éxito!\n' +
-            `Servicio: ${params.title}\n` +
-            `Fecha: ${selectedDate.toLocaleDateString('es')}\n` +
-            `Hora: ${selectedTimeSlot}\n` +
-            `Precio: $${params.price}`
-        );
-    }
-
-    // Llamar a updateServiceDetails cuando se carga la página
-    window.addEventListener('load', function() {
-        updateServiceDetails();
-        generateCalendar();
-    });
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            menu.classList.toggle("show");
-        }
+    <script type="module">
+        import { auth } from './scripts/firebase-config.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { initializeMenu } from './scripts/menuHandler.js';
 
         let currentDate = new Date();
         let selectedDate = null;
         let selectedTimeSlot = null;
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.classList.add('notification', type, 'animate');
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        function checkAuthStatus() {
+            return new Promise((resolve) => {
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                });
+            });
+        }
+
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                service: params.get('service'),
+                price: params.get('price'),
+                duration: params.get('duration'),
+                title: params.get('title'),
+                description: params.get('description')
+            };
+        }
+
+        function updateServiceDetails() {
+            const params = getUrlParams();
+            if (params.service) {
+                document.getElementById('servicePrice').textContent = `$${params.price}`;
+                document.getElementById('serviceTitle').textContent = params.title;
+                document.getElementById('serviceDuration').textContent = `${params.duration} minutos`;
+                document.getElementById('serviceDescription').textContent = params.description;
+            }
+        }
+
+        async function confirmarCita() {
+            const isLoggedIn = await checkAuthStatus();
+            if (!isLoggedIn) {
+                showNotification('Por favor, inicia sesión para confirmar tu cita.', 'error');
+                setTimeout(() => {
+                    window.location.href = './inicioSesion.html';
+                }, 2000);
+                return;
+            }
+            const params = getUrlParams();
+            showNotification(
+                '¡Cita agendada con éxito!\n' +
+                `Servicio: ${params.title}\n` +
+                `Fecha: ${selectedDate.toLocaleDateString('es')}\n` +
+                `Hora: ${selectedTimeSlot}\n` +
+                `Precio: $${params.price}`,
+                'success'
+            );
+        }
 
         function generateCalendar() {
             const year = currentDate.getFullYear();
@@ -431,14 +401,12 @@
             const calendarDays = document.getElementById('calendarDays');
             calendarDays.innerHTML = '';
 
-            // Agregar espacios vacíos para los días antes del primer día del mes
             for (let i = 0; i < startDay; i++) {
                 const emptyDay = document.createElement('div');
                 emptyDay.className = 'calendar-day';
                 calendarDays.appendChild(emptyDay);
             }
 
-            // Agregar los días del mes
             for (let day = 1; day <= totalDays; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.className = 'calendar-day';
@@ -515,17 +483,25 @@
             generateCalendar();
         }
 
-        function confirmarCita() {
-            alert('¡Cita agendada con éxito!\nFecha: ' + selectedDate.toLocaleDateString('es') + '\nHora: ' + selectedTimeSlot);
-        }
+        window.addEventListener('load', async function() {
+            const isLoggedIn = await checkAuthStatus();
+            if (!isLoggedIn) {
+                showNotification('Por favor, inicia sesión para agendar una cita.', 'error');
+                setTimeout(() => {
+                    window.location.href = './inicioSesion.html';
+                }, 2000);
+                return;
+            }
+            updateServiceDetails();
+            generateCalendar();
+        });
 
-        // Inicializar el calendario
-        generateCalendar();
-    </script>
-    <script type="module" src="./scripts/auth.js"></script>
-    <script type="module">
-        import { initializeMenu } from './scripts/menuHandler.js';
         document.addEventListener('DOMContentLoaded', initializeMenu);
+
+        // Expose functions to global scope for inline event handlers
+        window.confirmarCita = confirmarCita;
+        window.prevMonth = prevMonth;
+        window.nextMonth = nextMonth;
     </script>
 </body>
 </html>

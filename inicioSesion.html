@@ -220,6 +220,7 @@
             <li><a href="./index.html">Inicio</a></li>
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
+            <li id="authMenuItem"><a href="./inicioSesion.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
@@ -237,30 +238,6 @@
                 <button type="submit" class="cta-button">Iniciar Sesión</button>
             </form>
             <p style="text-align: center; margin-top: 20px;">¿No tienes una cuenta? <a href="./registrateUsuario.html">Regístrate aquí</a></p>
-        </section>
-
-        <section id="perfil" style="display: none;">
-            <h2>Perfil de Usuario</h2>
-            <div>
-                <h3>Información Personal</h3>
-                <p><strong>Nombre:</strong> <span id="nombreUsuario"></span></p>
-                <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
-                <button class="cta-button" onclick="editarPerfilUsuario()">Editar Perfil</button>
-                <button class="cta-button" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
-            </div>
-            <div>
-                <h3>Mis Mascotas</h3>
-                <ul id="listaMascotas">
-                    <!-- Las mascotas se agregarán dinámicamente aquí -->
-                </ul>
-                <button class="cta-button" onclick="agregarMascotaUsuario()">Agregar Mascota</button>
-            </div>
-            <div>
-                <h3>Próximas Citas</h3>
-                <ul id="listaCitas">
-                    <!-- Las citas se agregarán dinámicamente aquí -->
-                </ul>
-            </div>
         </section>
     </div>
 
@@ -288,22 +265,6 @@
             const password = document.getElementById('password').value;
             await iniciarSesion(email, password);
         });
-
-        window.cerrarSesionUsuario = async function() {
-            await cerrarSesion();
-        }
-
-        window.editarPerfilUsuario = function() {
-            editarPerfil();
-        }
-
-        window.agregarMascotaUsuario = function() {
-            agregarMascota();
-        }
-    </script>
-    <script type="module">
-        import { initializeMenu } from './scripts/menuHandler.js';
-        document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
 </html>

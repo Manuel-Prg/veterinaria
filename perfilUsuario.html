@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario - PetCare</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #4a90e2;
+        }
+        .profile-section {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .pet-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .pet-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3a7bc8;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .notification.success {
+            background-color: #4CAF50;
+        }
+        .notification.error {
+            background-color: #f44336;
+        }
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        .notification.animate {
+            animation: slideIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Perfil de Usuario</h1>
+    </header>
+
+    <nav>
+        <ul id="menu">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./agendarCita.html">Agendar Cita</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./informacion.html">Información de Vacunas</a></li>
+            <li id="authMenuItem"><a href="./inicioSesion.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="user-info" class="profile-section">
+            <h2>Perfil de Usuario</h2>
+            <div>
+                <h3>Información Personal</h3>
+                <p><strong>Nombre:</strong> <span id="nombreUsuario"></span></p>
+                <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
+                <button class="cta-button" onclick="editarPerfilUsuario()">Editar Perfil</button>
+                <button class="cta-button" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
+            </div>
+        </section>
+
+        <section id="pets" class="profile-section">
+            <h2>Mis Mascotas</h2>
+            <ul id="petList" class="pet-list">
+                <!-- Las mascotas se agregarán aquí dinámicamente -->
+            </ul>
+
+            <h3>Agregar Nueva Mascota</h3>
+            <form id="addPetForm">
+                <div class="form-group">
+                    <label for="petName">Nombre de la mascota:</label>
+                    <input type="text" id="petName" required>
+                </div>
+                <div class="form-group">
+                    <label for="petType">Tipo de mascota:</label>
+                    <select id="petType" required>
+                        <option value="perro">Perro</option>
+                        <option value="gato">Gato</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="petAge">Edad (años):</label>
+                    <input type="number" id="petAge" min="0" required>
+                </div>
+                <button type="submit">Agregar Mascota</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+        import { firebaseConfig } from './scripts/firebase-config.js';
+        import { initializeMenu } from './scripts/menuHandler.js';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.classList.add('notification', type, 'animate');
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        function updateUserInfo(user) {
+            document.getElementById('userName').textContent = user.displayName || 'N/A';
+            document.getElementById('userEmail').textContent = user.email;
+        }
+
+        async function loadUserPets(userId) {
+            const userRef = doc(db, "users", userId);
+            const userSnap = await getDoc(userRef);
+
+            if (userSnap.exists()) {
+                const userData = userSnap.data();
+                const petList = document.getElementById('petList');
+                petList.innerHTML = ''; // Clear existing list
+
+                if (userData.pets && userData.pets.length > 0) {
+                    userData.pets.forEach(pet => {
+                        const li = document.createElement('li');
+                        li.className = 'pet-item';
+                        li.textContent = `${pet.name} - ${pet.type}, ${pet.age} años`;
+                        petList.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.textContent = 'No tienes mascotas registradas.';
+                    petList.appendChild(li);
+                }
+            }
+        }
+
+        async function addPet(userId, petData) {
+            const userRef = doc(db, "users", userId);
+            await updateDoc(userRef, {
+                pets: arrayUnion(petData)
+            });
+        }
+
+        document.getElementById('addPetForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const petName = document.getElementById('petName').value;
+            const petType = document.getElementById('petType').value;
+            const petAge = document.getElementById('petAge').value;
+
+            const newPet = {
+                name: petName,
+                type: petType,
+                age: parseInt(petAge)
+            };
+
+            try {
+                await addPet(auth.currentUser.uid, newPet);
+                showNotification('Mascota agregada con éxito!', 'success');
+                loadUserPets(auth.currentUser.uid); // Reload the pet list
+                e.target.reset(); // Clear the form
+            } catch (error) {
+                console.error("Error adding pet: ", error);
+                showNotification('Error al agregar la mascota. Por favor, intenta de nuevo.', 'error');
+            }
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                updateUserInfo(user);
+                loadUserPets(user.uid);
+            } else {
+                window.location.href = './inicioSesion.html';
+            }
+        });
+
+        window.cerrarSesionUsuario = async function() {
+            await cerrarSesion();
+        }
+
+        window.editarPerfilUsuario = function() {
+            editarPerfil();
+        }
+
+        window.agregarMascotaUsuario = function() {
+            agregarMascota();
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeMenu);
+    </script>
+</body>
+</html>
+
