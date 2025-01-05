@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Favicon básico -->
     <link rel="icon" type="image/x-icon" href="./img/icons/favicon_io/favicon.ico">
     <!-- Para diferentes tamaños de favicon -->
@@ -212,6 +214,18 @@
 
         .slide-in-bottom {
             animation: slideInBottom 1s ease;
+        }
+        .social-icons {
+            margin-top: 15px;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--secondary-color);
         }
     </style>
 </head>
@@ -444,7 +458,13 @@
 
     <footer>
         <p>&copy; 2023 PetCare. Todos los derechos reservados.</p>
-        <p>Contáctanos: info@petcare.com | Tel: (123) 456-7890</p>
+        <p>Contáctanos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="224b4c444d62524756414350470c414d4f">[email&#160;protected]</a> | Tel: (123) 456-7890</p>
+        <p>Síguenos en nuestras redes sociales para más consejos y novedades</p>
+        <div class="social-icons">
+            <a href="https://m.facebook.com/petcare.mx.rehab/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/PetCare" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@PetCare" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
     </footer>
     <script type="module" src="./scripts/auth.js"></script>
     <script type="module">
