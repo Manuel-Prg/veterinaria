@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon básico -->
+    <link rel="icon" type="image/x-icon" href="./img/icons/favicon_io/favicon.ico">
+    <!-- Para diferentes tamaños de favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icons/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icons/favicon_io/favicon-16x16.png">
     <title>Información de Vacunas - PetCare</title>
     <style>
         :root {
@@ -11,6 +17,7 @@
             --text-color: #333;
             --bg-color: #f9f9f9;
         }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -19,43 +26,46 @@
             color: var(--text-color);
             background-color: var(--bg-color);
         }
+
         header {
             /* Ajustar el gradiente para que sea menos opaco */
-            background: linear-gradient(to right, 
-                rgba(255, 255, 255, 0.7), 
-                rgba(255, 255, 255, 0.6)
-            ), url('./img/banner_2.jpg');
-            
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.6)), url('./img/banner_2.jpg');
+
             /* Asegurar que la imagen de fondo se vea correctamente */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
+
             color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
             /* Añadir un mínimo de altura si es necesario */
             min-height: 200px;
-            
+
             /* Mejorar la legibilidad del texto */
             position: relative;
         }
 
         /* Si necesitas mejorar la legibilidad del texto específicamente */
-        header h1, header p {
+        header h1,
+        header p {
             position: relative;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
+
         nav {
             background-color: white;
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -63,56 +73,69 @@
             display: flex;
             justify-content: center;
         }
+
         nav ul li {
             margin: 0 15px;
         }
+
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         nav ul li a:hover {
             color: var(--secondary-color);
         }
+
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
             padding: 40px 0;
         }
+
         h2 {
             color: var(--primary-color);
             border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
         }
+
         h3 {
             color: var(--secondary-color);
         }
+
         .vaccine-info {
             background-color: white;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
+
         th {
             background-color: var(--primary-color);
             color: white;
         }
+
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -122,6 +145,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
 
@@ -141,10 +165,11 @@
 
     <div class="container">
         <h2>Información de Vacunas</h2>
-        
+
         <div class="vaccine-info">
             <h3>Vacunas para Gatos</h3>
-            <p>Las vacunas son esenciales para proteger a tu gato contra enfermedades graves. Aquí te presentamos las vacunas recomendadas para gatos:</p>
+            <p>Las vacunas son esenciales para proteger a tu gato contra enfermedades graves. Aquí te presentamos las
+                vacunas recomendadas para gatos:</p>
             <table>
                 <tr>
                     <th>Vacuna</th>
@@ -176,7 +201,8 @@
 
         <div class="vaccine-info">
             <h3>Vacunas para Perros</h3>
-            <p>Las vacunas son cruciales para mantener a tu perro saludable. Aquí están las vacunas recomendadas para perros:</p>
+            <p>Las vacunas son cruciales para mantener a tu perro saludable. Aquí están las vacunas recomendadas para
+                perros:</p>
             <table>
                 <tr>
                     <th>Vacuna</th>
@@ -213,14 +239,19 @@
 
         <div class="vaccine-info">
             <h3>Consideraciones Especiales por Raza</h3>
-            <p>Aunque la mayoría de las vacunas son recomendadas para todas las razas, hay algunas consideraciones especiales:</p>
+            <p>Aunque la mayoría de las vacunas son recomendadas para todas las razas, hay algunas consideraciones
+                especiales:</p>
             <ul>
-                <li><strong>Gatos de pelo largo (como Persas o Maine Coons):</strong> Pueden necesitar un cuidado especial durante la vacunación para evitar que el pelo interfiera con la inyección.</li>
-                <li><strong>Razas braquicefálicas (como Bulldogs o Pugs):</strong> Pueden requerir precauciones adicionales con la vacuna intranasal de Bordetella.</li>
+                <li><strong>Gatos de pelo largo (como Persas o Maine Coons):</strong> Pueden necesitar un cuidado
+                    especial durante la vacunación para evitar que el pelo interfiera con la inyección.</li>
+                <li><strong>Razas braquicefálicas (como Bulldogs o Pugs):</strong> Pueden requerir precauciones
+                    adicionales con la vacuna intranasal de Bordetella.</li>
                 <li><strong>Razas pequeñas o toy:</strong> Pueden recibir dosis ajustadas de algunas vacunas.</li>
-                <li><strong>Razas grandes (como Gran Danés o San Bernardo):</strong> Pueden necesitar un calendario de vacunación ajustado en su etapa de crecimiento.</li>
+                <li><strong>Razas grandes (como Gran Danés o San Bernardo):</strong> Pueden necesitar un calendario de
+                    vacunación ajustado en su etapa de crecimiento.</li>
             </ul>
-            <p>Siempre consulta con nuestro equipo veterinario para determinar el mejor plan de vacunación para tu mascota, considerando su raza, edad, estilo de vida y estado de salud.</p>
+            <p>Siempre consulta con nuestro equipo veterinario para determinar el mejor plan de vacunación para tu
+                mascota, considerando su raza, edad, estilo de vida y estado de salud.</p>
         </div>
     </div>
 
@@ -234,4 +265,5 @@
         document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
+
 </html>

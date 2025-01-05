@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon básico -->
+    <link rel="icon" type="image/x-icon" href="./img/icons/favicon_io/favicon.ico">
+    <!-- Para diferentes tamaños de favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icons/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icons/favicon_io/favicon-16x16.png">
     <title>Pago - PetCare</title>
     <style>
         /* Estilos base */
@@ -165,13 +171,25 @@
 
         /* Animaciones */
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .processing {
@@ -180,6 +198,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="order-summary">
@@ -236,7 +255,8 @@
     <div class="success-modal" id="successModal">
         <div class="modal-content">
             <svg class="success-icon" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                <path fill="currentColor"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
             <h3>¡Pago Exitoso!</h3>
             <p>Serás redirigido en unos momentos...</p>
@@ -244,7 +264,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Obtener parámetros de la URL
             const params = new URLSearchParams(window.location.search);
             const service = params.get('service');
@@ -289,7 +309,7 @@
             expiryDate.addEventListener('input', (e) => {
                 let value = e.target.value.replace(/\D/g, '');
                 if (value.length > 2) {
-                    value = value.slice(0,2) + '/' + value.slice(2);
+                    value = value.slice(0, 2) + '/' + value.slice(2);
                 }
                 e.target.value = value;
             });
@@ -318,4 +338,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon básico -->
+    <link rel="icon" type="image/x-icon" href="./img/icons/favicon_io/favicon.ico">
+    <!-- Para diferentes tamaños de favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icons/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icons/favicon_io/favicon-16x16.png">
     <title>Blog - PetCare</title>
     <style>
         :root {
@@ -11,6 +17,7 @@
             --text-color: #333;
             --bg-color: #f9f9f9;
         }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -19,43 +26,46 @@
             color: var(--text-color);
             background-color: var(--bg-color);
         }
+
         header {
             /* Ajustar el gradiente para que sea menos opaco */
-            background: linear-gradient(to right, 
-                rgba(255, 255, 255, 0.7), 
-                rgba(255, 255, 255, 0.6)
-            ), url('./img/banner_2.jpg');
-            
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.6)), url('./img/banner_2.jpg');
+
             /* Asegurar que la imagen de fondo se vea correctamente */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
+
             color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
             /* Añadir un mínimo de altura si es necesario */
             min-height: 200px;
-            
+
             /* Mejorar la legibilidad del texto */
             position: relative;
         }
 
         /* Si necesitas mejorar la legibilidad del texto específicamente */
-        header h1, header p {
+        header h1,
+        header p {
             position: relative;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
+
         nav {
             background-color: white;
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -63,40 +73,49 @@
             display: flex;
             justify-content: center;
         }
+
         nav ul li {
             margin: 0 15px;
         }
+
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         nav ul li a:hover {
             color: var(--secondary-color);
         }
+
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
             padding: 40px 0;
         }
+
         .hamburger {
             display: none;
             font-size: 30px;
             cursor: pointer;
             color: var(--primary-color);
         }
+
         section {
             background-color: white;
             border-radius: 8px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
+
+        h1,
+        h2 {
             color: var(--primary-color);
         }
+
         .cta-button {
             display: inline-block;
             background-color: var(--secondary-color);
@@ -107,9 +126,11 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
+
         .cta-button:hover {
             background-color: #e09400;
         }
+
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -117,37 +138,60 @@
             padding: 20px;
             margin-top: 40px;
         }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
                 text-align: right;
             }
+
             nav ul {
                 display: none;
                 flex-direction: column;
                 align-items: center;
             }
+
             nav ul.show {
                 display: flex;
             }
+
             nav ul li {
                 margin: 10px 0;
             }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideInLeft {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         @keyframes slideInBottom {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .fade-in {
@@ -207,6 +251,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
 
@@ -230,19 +275,22 @@
             <article>
                 <h3>5 tips para mantener a tu perro activo en casa</h3>
                 <p>Fecha: 1 de junio, 2023</p>
-                <p>Mantener a tu perro activo y entretenido en casa es crucial para su salud física y mental. Aquí te presentamos 5 consejos prácticos para lograrlo...</p>
+                <p>Mantener a tu perro activo y entretenido en casa es crucial para su salud física y mental. Aquí te
+                    presentamos 5 consejos prácticos para lograrlo...</p>
                 <a href="./pages/posts/posts_1.html" class="cta-button">Leer más</a>
             </article>
             <article>
                 <h3>La importancia de la vacunación en gatos</h3>
                 <p>Fecha: 15 de mayo, 2023</p>
-                <p>Las vacunas son esenciales para proteger a tu gato contra enfermedades graves. En este artículo, explicamos por qué es tan importante mantener al día el calendario de vacunación de tu felino...</p>
+                <p>Las vacunas son esenciales para proteger a tu gato contra enfermedades graves. En este artículo,
+                    explicamos por qué es tan importante mantener al día el calendario de vacunación de tu felino...</p>
                 <a href="./pages/posts/posts_2.html" class="cta-button">Leer más</a>
             </article>
             <article>
                 <h3>Cómo reconocer signos de estrés en tu mascota</h3>
                 <p>Fecha: 1 de mayo, 2023</p>
-                <p>El estrés en las mascotas puede manifestarse de diversas formas. Aprende a reconocer las señales y a ayudar a tu compañero peludo a sentirse más tranquilo y feliz...</p>
+                <p>El estrés en las mascotas puede manifestarse de diversas formas. Aprende a reconocer las señales y a
+                    ayudar a tu compañero peludo a sentirse más tranquilo y feliz...</p>
                 <a href="./pages/posts/posts_3.html" class="cta-button">Leer más</a>
             </article>
         </section>
@@ -266,5 +314,5 @@
         document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
-</html>
 
+</html>

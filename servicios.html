@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon básico -->
+    <link rel="icon" type="image/x-icon" href="./img/icons/favicon_io/favicon.ico">
+    <!-- Para diferentes tamaños de favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icons/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icons/favicon_io/favicon-16x16.png">
     <title>Servicios - PetCare</title>
     <style>
         :root {
@@ -11,6 +17,7 @@
             --text-color: #333;
             --bg-color: #f9f9f9;
         }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -19,43 +26,46 @@
             color: var(--text-color);
             background-color: var(--bg-color);
         }
+
         header {
             /* Ajustar el gradiente para que sea menos opaco */
-            background: linear-gradient(to right, 
-                rgba(255, 255, 255, 0.7), 
-                rgba(255, 255, 255, 0.6)
-            ), url('./img/banner_2.jpg');
-            
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.6)), url('./img/banner_2.jpg');
+
             /* Asegurar que la imagen de fondo se vea correctamente */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
+
             color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
             /* Añadir un mínimo de altura si es necesario */
             min-height: 200px;
-            
+
             /* Mejorar la legibilidad del texto */
             position: relative;
         }
 
         /* Si necesitas mejorar la legibilidad del texto específicamente */
-        header h1, header p {
+        header h1,
+        header p {
             position: relative;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
+
         nav {
             background-color: white;
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -63,30 +73,36 @@
             display: flex;
             justify-content: center;
         }
+
         nav ul li {
             margin: 0 15px;
         }
+
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         nav ul li a:hover {
             color: var(--secondary-color);
         }
+
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
             padding: 40px 0;
         }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 20px 0;
         }
+
         .service-card {
             background: white;
             border-radius: 8px;
@@ -94,27 +110,33 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+
         .service-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
         .service-content {
             padding: 20px;
         }
+
         .service-title {
             color: var(--primary-color);
             font-size: 1.5em;
             margin-bottom: 10px;
         }
+
         .service-description {
             color: var(--text-color);
             margin-bottom: 15px;
         }
+
         .service-details {
             display: flex;
             justify-content: space-between;
@@ -122,6 +144,7 @@
             border-top: 1px solid #eee;
             margin-top: 15px;
         }
+
         .cta-button {
             display: inline-block;
             background-color: var(--secondary-color);
@@ -132,9 +155,11 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
+
         .cta-button:hover {
             background-color: #e09400;
         }
+
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -144,18 +169,37 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideInLeft {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         @keyframes slideInBottom {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .fade-in {
@@ -171,6 +215,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
 
@@ -194,12 +239,14 @@
                 <img src="./img/consulta_felina.jpg" alt="Consulta Felina" class="service-image">
                 <div class="service-content">
                     <h3 class="service-title">Consulta Felina / Feline Appointment</h3>
-                    <p class="service-description">Atención de médico certificado Fear Free (Libre de miedo) para tu felino.</p>
+                    <p class="service-description">Atención de médico certificado Fear Free (Libre de miedo) para tu
+                        felino.</p>
                     <div class="service-details">
                         <span>40 min</span>
                         <span>$600</span>
                     </div>
-                    <a href="./agendarCita.html?service=consulta-felina&price=600&duration=40&title=Consulta Felina / Feline Appointment&description=Atención de médico certificado Fear Free (Libre de miedo)" class="cta-button">Agendar cita</a>
+                    <a href="./agendarCita.html?service=consulta-felina&price=600&duration=40&title=Consulta Felina / Feline Appointment&description=Atención de médico certificado Fear Free (Libre de miedo)"
+                        class="cta-button">Agendar cita</a>
                 </div>
             </div>
 
@@ -212,7 +259,8 @@
                         <span>20 min</span>
                         <span>$450</span>
                     </div>
-                    <a href="./agendarCita.html?service=seguimiento-felino&price=450&duration=20&title=Seguimiento Felino / Feline Follow-up&description=Atención de un médico certificado Fear Free" class="cta-button">Agendar cita</a>
+                    <a href="./agendarCita.html?service=seguimiento-felino&price=450&duration=20&title=Seguimiento Felino / Feline Follow-up&description=Atención de un médico certificado Fear Free"
+                        class="cta-button">Agendar cita</a>
                 </div>
             </div>
 
@@ -220,12 +268,14 @@
                 <img src="./img/vacunación_felina.jpg" alt="Vacunación Felina" class="service-image">
                 <div class="service-content">
                     <h3 class="service-title">Vacunación Felina / Feline Vaccination</h3>
-                    <p class="service-description">Vacunación realizada por un médico certificado Fear Free (Libre de miedo).</p>
+                    <p class="service-description">Vacunación realizada por un médico certificado Fear Free (Libre de
+                        miedo).</p>
                     <div class="service-details">
                         <span>25 min</span>
                         <span>$400</span>
                     </div>
-                    <a href="./agendarCita.html?service=vacunacion-felina&price=400&duration=25&title=Vacunación Felina / Feline Vaccination&description=Atención de médico certificado Fear Free (Libre de miedo)" class="cta-button">Agendar cita</a>
+                    <a href="./agendarCita.html?service=vacunacion-felina&price=400&duration=25&title=Vacunación Felina / Feline Vaccination&description=Atención de médico certificado Fear Free (Libre de miedo)"
+                        class="cta-button">Agendar cita</a>
                 </div>
             </div>
 
@@ -239,7 +289,8 @@
                         <span>30 min</span>
                         <span>$2,200</span>
                     </div>
-                    <a href="./agendarCita.html?service=microchip-felino&price=2200&duration=30&title=MicroChip Felino ISO 11784/11785&description=MicroChip Felino ISO 11784/11785" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=microchip-felino&price=2200&duration=30&title=MicroChip Felino ISO 11784/11785&description=MicroChip Felino ISO 11784/11785"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
@@ -252,7 +303,8 @@
                         <span>15 min</span>
                         <span>$80</span>
                     </div>
-                    <a href="./agendarCita.html?service=visita-social-felino&price=80&duration=15&title=Visita Social/Social Visit&description=Para disminuir el estrés de tu felino" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=visita-social-felino&price=80&duration=15&title=Visita Social/Social Visit&description=Para disminuir el estrés de tu felino"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
@@ -265,7 +317,8 @@
                         <span>45 min</span>
                         <span>$250</span>
                     </div>
-                    <a href="./agendarCita.html?service=bano-felino&price=250&duration=45&title=Baño Felino/ Feline Bath&description=Un baño frecuente para tu felino" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=bano-felino&price=250&duration=45&title=Baño Felino/ Feline Bath&description=Un baño frecuente para tu felino"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
@@ -278,7 +331,8 @@
                         <span>20 min</span>
                         <span>$450</span>
                     </div>
-                    <a href="./agendarCita.html?service=seguimiento-canino&price=450&duration=20&title=Seguimiento Canino/ Canine Follow-up&description=Atención de un médico certificado Fear Free (Libre de miedo)" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=seguimiento-canino&price=450&duration=20&title=Seguimiento Canino/ Canine Follow-up&description=Atención de un médico certificado Fear Free (Libre de miedo)"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
@@ -291,7 +345,8 @@
                         <span>40 min</span>
                         <span>$600</span>
                     </div>
-                    <a href="./agendarCita.html?service=consulta-canina&price=600&duration=40&title=Consulta Canina/ Canine Appointment&description=Atención de un médico certificado Fear Free (Libre de miedo)" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=consulta-canina&price=600&duration=40&title=Consulta Canina/ Canine Appointment&description=Atención de un médico certificado Fear Free (Libre de miedo)"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
@@ -304,7 +359,8 @@
                         <span>15 min</span>
                         <span>$80</span>
                     </div>
-                    <a href="./agendarCita.html?service=visita-social-canino&price=80&duration=15&title=Visita Social/Social Visit&description=Para disminuir el estrés de tu Canino" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=visita-social-canino&price=80&duration=15&title=Visita Social/Social Visit&description=Para disminuir el estrés de tu Canino"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
@@ -317,7 +373,8 @@
                         <span>25 min</span>
                         <span>$400</span>
                     </div>
-                    <a href="./agendarCita.html?service=vacunacion-canina&price=400&duration=25&title=Vacunación Canina / Canine Vaccination&description=Atención de un médico certificado Fear Free (Libre de miedo)" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=vacunacion-canina&price=400&duration=25&title=Vacunación Canina / Canine Vaccination&description=Atención de un médico certificado Fear Free (Libre de miedo)"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
@@ -325,17 +382,20 @@
                 <img src="./img/baño perro.jpeg" alt="Baño Canino perro grande-gigante" class="service-image">
                 <div class="service-content">
                     <h3 class="service-title">Baño Canino perro grande-gigante</h3>
-                    <p class="service-description">Para nuestros perros de pelño largo y grandes- for our large and giant dogs.</p>
+                    <p class="service-description">Para nuestros perros de pelño largo y grandes- for our large and
+                        giant dogs.</p>
                     <div class="service-details">
                         <span>2 h</span>
                         <span>$450</span>
                     </div>
-                    <a href="./agendarCita.html?service=bano-canino-grande&price=450&duration=120&title=Baño Canino perro grande-gigante&description=Para nuestros perros de pelo largo y grandes- for our large and giant dogs" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=bano-canino-grande&price=450&duration=120&title=Baño Canino perro grande-gigante&description=Para nuestros perros de pelo largo y grandes- for our large and giant dogs"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
 
             <div class="service-card">
-                <img src="./img/certificado_viaje.jpg" alt="Cerfiticado Nacional/ Travel Certificate" class="service-image">
+                <img src="./img/certificado_viaje.jpg" alt="Cerfiticado Nacional/ Travel Certificate"
+                    class="service-image">
                 <div class="service-content">
                     <h3 class="service-title">Cerfiticado Nacional/ Travel Certificate</h3>
                     <p class="service-description">Certificado de salud para viajar/ Health Certificate for travel.</p>
@@ -343,33 +403,40 @@
                         <span>20 min</span>
                         <span>$450</span>
                     </div>
-                    <a href="./agendarCita.html?service=certificado-nacional&price=450&duration=20&title=Certificado Nacional/ Travel Certificate&description=Certificado de salud para viajar/ Health Certificate for travel" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=certificado-nacional&price=450&duration=20&title=Certificado Nacional/ Travel Certificate&description=Certificado de salud para viajar/ Health Certificate for travel"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
-            
+
             <div class="service-card">
-                <img src="./img/certificado_viaje.jpg" alt="Cerfiticado Internacional/ International Certificate" class="service-image">
+                <img src="./img/certificado_viaje.jpg" alt="Cerfiticado Internacional/ International Certificate"
+                    class="service-image">
                 <div class="service-content">
                     <h3 class="service-title">Cerfiticado Internacional/ International Certificate</h3>
-                    <p class="service-description">Certificado de salud para viajar internacionalmente/ International Health Certificate for travel.</p>
+                    <p class="service-description">Certificado de salud para viajar internacionalmente/ International
+                        Health Certificate for travel.</p>
                     <div class="service-details">
                         <span>20 min</span>
                         <span>$650</span>
                     </div>
-                    <a href="./agendarCita.html?service=certificado-internacional&price=650&duration=20&title=Certificado Internacional/ International Certificate&description=Certificado de salud para viajar internacionalmente/ International Health Certificate for travel" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=certificado-internacional&price=650&duration=20&title=Certificado Internacional/ International Certificate&description=Certificado de salud para viajar internacionalmente/ International Health Certificate for travel"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
-    
+
             <div class="service-card">
-                <img src="./img/cerficado_barredor.webp" alt="Cerfiticado gusano barrenador/ Worm Repellent Certificate" class="service-image">
+                <img src="./img/cerficado_barredor.webp" alt="Cerfiticado gusano barrenador/ Worm Repellent Certificate"
+                    class="service-image">
                 <div class="service-content">
                     <h3 class="service-title">Cerfiticado gusano barrenador/ Worm Repellent Certificate</h3>
-                    <p class="service-description">Certificado de salud de los animales mascotas yt de servicio como libres de GBG / Health Certificate for pets.</p>
+                    <p class="service-description">Certificado de salud de los animales mascotas yt de servicio como
+                        libres de GBG / Health Certificate for pets.</p>
                     <div class="service-details">
                         <span>30 min</span>
                         <span>$1,000</span>
                     </div>
-                    <a href="./agendarCita.html?service=certificado-gusano&price=1000&duration=30&title=Certificado gusano barrenador/ Worm Repellent Certificate&description=Certificado de salud de los animales mascotas y de servicio como libres de GBG / Health Certificate for pets" class="cta-button">Agendar Cita</a>
+                    <a href="./agendarCita.html?service=certificado-gusano&price=1000&duration=30&title=Certificado gusano barrenador/ Worm Repellent Certificate&description=Certificado de salud de los animales mascotas y de servicio como libres de GBG / Health Certificate for pets"
+                        class="cta-button">Agendar Cita</a>
                 </div>
             </div>
         </div>
@@ -387,7 +454,7 @@
     <script type="module">
         import { auth } from './scripts/firebase-config.js';
         import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-    
+
         function checkAuthStatus() {
             return new Promise((resolve) => {
                 onAuthStateChanged(auth, (user) => {
@@ -399,7 +466,7 @@
                 });
             });
         }
-    
+
         document.addEventListener('click', async (e) => {
             if (e.target.matches('a[href^="./agendarCita.html"]')) {
                 e.preventDefault();
@@ -414,5 +481,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>

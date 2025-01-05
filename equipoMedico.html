@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon básico -->
+    <link rel="icon" type="image/x-icon" href="./img/icons/favicon_io/favicon.ico">
+    <!-- Para diferentes tamaños de favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icons/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icons/favicon_io/favicon-16x16.png">
     <title>Equipo Médico - PetCare</title>
     <style>
         :root {
@@ -11,6 +17,7 @@
             --text-color: #333;
             --bg-color: #f9f9f9;
         }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -19,43 +26,46 @@
             color: var(--text-color);
             background-color: var(--bg-color);
         }
+
         header {
             /* Ajustar el gradiente para que sea menos opaco */
-            background: linear-gradient(to right, 
-                rgba(255, 255, 255, 0.7), 
-                rgba(255, 255, 255, 0.6)
-            ), url('./img/banner_2.jpg');
-            
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.6)), url('./img/banner_2.jpg');
+
             /* Asegurar que la imagen de fondo se vea correctamente */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
+
             color: rgb(75, 135, 204);
             text-align: center;
             padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
             /* Añadir un mínimo de altura si es necesario */
             min-height: 200px;
-            
+
             /* Mejorar la legibilidad del texto */
             position: relative;
         }
 
         /* Si necesitas mejorar la legibilidad del texto específicamente */
-        header h1, header p {
+        header h1,
+        header p {
             position: relative;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
+
         nav {
             background-color: white;
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -63,30 +73,36 @@
             display: flex;
             justify-content: center;
         }
+
         nav ul li {
             margin: 0 15px;
         }
+
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         nav ul li a:hover {
             color: var(--secondary-color);
         }
+
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
             padding: 40px 0;
         }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 20px 0;
         }
+
         .team-member {
             background: white;
             border-radius: 8px;
@@ -94,35 +110,43 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .team-member:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+
         .member-image {
             width: 100%;
             height: 300px;
             object-fit: cover;
         }
+
         .member-content {
             padding: 20px;
         }
+
         .member-name {
             color: var(--primary-color);
             font-size: 1.5em;
             margin-bottom: 10px;
         }
+
         .member-role {
             color: var(--secondary-color);
             font-weight: bold;
             margin-bottom: 10px;
         }
+
         .member-description {
             color: var(--text-color);
             margin-bottom: 15px;
         }
+
         .member-certificates {
             margin-top: 15px;
         }
+
         .certificate {
             background-color: var(--bg-color);
             padding: 5px 10px;
@@ -132,6 +156,7 @@
             margin-bottom: 5px;
             font-size: 0.9em;
         }
+
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -141,45 +166,65 @@
         }
 
         @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideInLeft {
-        from { transform: translateX(-100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         @keyframes slideInBottom {
-        from { transform: translateY(100%); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .fade-in {
-        animation: fadeIn 1s ease-in-out;
+            animation: fadeIn 1s ease-in-out;
         }
 
         .slide-in-left {
-        animation: slideInLeft 1s ease-in-out;
+            animation: slideInLeft 1s ease-in-out;
         }
 
         .slide-in-bottom {
-        animation: slideInBottom 1s ease-in-out;
+            animation: slideInBottom 1s ease-in-out;
         }
 
         /* Styles for team members */
         .team-member {
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .team-member img {
-        max-width: 100%;
-        height: auto;
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
+
 <body>
     <header>
 
@@ -205,7 +250,9 @@
                 <div class="member-content">
                     <h3 class="member-name">Dra. Bryan Rodríguez</h3>
                     <p class="member-role">Veterinario Especialista en Felinos</p>
-                    <p class="member-description">El Dr. Bryan Rodríguez es nuestro especialista en cuidado de gatos. Tiene cuenta con más de 10 años de experiencia en el cuidado de gatos. Su enfoque en técnicas de manejo libre de estrés la hace una favorita entre nuestros pacientes felinos.</p>
+                    <p class="member-description">El Dr. Bryan Rodríguez es nuestro especialista en cuidado de gatos.
+                        Tiene cuenta con más de 10 años de experiencia en el cuidado de gatos. Su enfoque en técnicas de
+                        manejo libre de estrés la hace una favorita entre nuestros pacientes felinos.</p>
                     <div class="member-certificates">
                         <span class="certificate">Fear Free Certified</span>
                         <span class="certificate">Especialista en Medicina Felina</span>
@@ -218,7 +265,9 @@
                 <div class="member-content">
                     <h3 class="member-name">Dr. Carlos Salazar</h3>
                     <p class="member-role">Veterinario Cirujano</p>
-                    <p class="member-description">El Dr. Salazar es nuestro experto en cirugía veterinaria. Con una amplia experiencia en procedimientos complejos, garantiza el mejor cuidado para nuestros pacientes que requieren intervenciones quirúrgicas.</p>
+                    <p class="member-description">El Dr. Salazar es nuestro experto en cirugía veterinaria. Con una
+                        amplia experiencia en procedimientos complejos, garantiza el mejor cuidado para nuestros
+                        pacientes que requieren intervenciones quirúrgicas.</p>
                     <div class="member-certificates">
                         <span class="certificate">Cirujano Veterinario Certificado</span>
                         <span class="certificate">Especialista en Anestesia Veterinaria</span>
@@ -230,14 +279,16 @@
 
     <div class="container">
         <h2>Nuestras Vacunas</h2>
-        <p>En PetCare, utilizamos vacunas de la más alta calidad para proteger a tus mascotas. Nuestro protocolo de vacunación incluye:</p>
+        <p>En PetCare, utilizamos vacunas de la más alta calidad para proteger a tus mascotas. Nuestro protocolo de
+            vacunación incluye:</p>
         <ul>
             <li>Vacuna contra la Rabia</li>
             <li>Vacuna Triple Felina (Panleucopenia, Calicivirus, Rinotraqueítis)</li>
             <li>Vacuna contra la Leucemia Felina</li>
             <li>Vacuna contra el Virus de la Inmunodeficiencia Felina (opcional)</li>
         </ul>
-        <p>Nuestros veterinarios evaluarán las necesidades específicas de tu mascota y recomendarán el mejor plan de vacunación.</p>
+        <p>Nuestros veterinarios evaluarán las necesidades específicas de tu mascota y recomendarán el mejor plan de
+            vacunación.</p>
     </div>
 
     <footer>
@@ -250,5 +301,5 @@
         document.addEventListener('DOMContentLoaded', initializeMenu);
     </script>
 </body>
-</html>
 
+</html>
