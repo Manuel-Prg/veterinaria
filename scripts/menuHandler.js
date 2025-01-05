@@ -7,7 +7,7 @@ export function initializeMenu() {
     onAuthStateChanged(auth, (user) => {
         if (authMenuItem) {
             if (user) {
-                authMenuItem.innerHTML = '<a href="./inicioSesion.html">Perfil</a>';
+                authMenuItem.innerHTML = '<a href="/perfilUsuario.html">Perfil</a>';
             } else {
                 authMenuItem.innerHTML = '<a href="./inicioSesion.html">Iniciar Sesión</a>';
             }

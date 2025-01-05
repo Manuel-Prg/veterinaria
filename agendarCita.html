@@ -366,6 +366,7 @@
             }
         }
 
+        // Reemplaza la función confirmarCita existente por esta:
         async function confirmarCita() {
             const isLoggedIn = await checkAuthStatus();
             if (!isLoggedIn) {
@@ -375,15 +376,15 @@
                 }, 2000);
                 return;
             }
+
             const params = getUrlParams();
-            showNotification(
-                '¡Cita agendada con éxito!\n' +
-                `Servicio: ${params.title}\n` +
-                `Fecha: ${selectedDate.toLocaleDateString('es')}\n` +
-                `Hora: ${selectedTimeSlot}\n` +
-                `Precio: $${params.price}`,
-                'success'
-            );
+            const paymentUrl = new URL('./mertodoPago.html', window.location.href);
+            paymentUrl.searchParams.set('service', params.title);
+            paymentUrl.searchParams.set('price', params.price);
+            paymentUrl.searchParams.set('date', selectedDate.toLocaleDateString('es'));
+            paymentUrl.searchParams.set('time', selectedTimeSlot);
+
+            window.location.href = paymentUrl.toString();
         }
 
         function generateCalendar() {

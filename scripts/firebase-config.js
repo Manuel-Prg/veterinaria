@@ -2,7 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
 
-const firebaseConfig = {
+// Exportar la configuración
+export const firebaseConfig = {
   apiKey: "AIzaSyDanIV08JWiadiZd_PlwoSnzbw1aYdGe8s",
   authDomain: "veterinaria-petcare-8d11d.firebaseapp.com",
   projectId: "veterinaria-petcare-8d11d",

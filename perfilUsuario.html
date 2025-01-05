@@ -5,6 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario - PetCare</title>
     <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        header {
+            /* Ajustar el gradiente para que sea menos opaco */
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0.7), 
+                rgba(255, 255, 255, 0.6)
+            ), url('./img/banner_2.jpg');
+            
+            /* Asegurar que la imagen de fondo se vea correctamente */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: rgb(75, 135, 204);
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            
+            /* Añadir un mínimo de altura si es necesario */
+            min-height: 200px;
+            
+            /* Mejorar la legibilidad del texto */
+            position: relative;
+        }
+
+        /* Si necesitas mejorar la legibilidad del texto específicamente */
+        header h1, header p {
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        nav {
+            background-color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #e09400;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                text-align: right;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        form label {
+            font-weight: bold;
+        }
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .user-icon {
+            font-size: 64px;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .banner {
+            position: relative;
+            background:  url('./img/banner.png') no-repeat;
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.3) 0%, rgba(245, 166, 35, 0.3) 100%);
+            z-index: 1;
+        }
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .banner h2 {
+            color: var(--primary-color);
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+        .banner .cta-button {
+            font-size: 1.2em;
+            padding: 15px 30px;
+            background-color: var(--secondary-color);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .banner .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 768px) {
+            .banner {
+                min-height: 400px;
+                padding: 40px 20px;
+            }
+            
+            .banner h2 {
+                font-size: 2em;
+            }
+        }
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -61,40 +263,48 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 15px;
+            padding: 15px 25px;
             border-radius: 5px;
             color: white;
             font-weight: bold;
             opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            transition: all 0.3s ease-in-out;
             z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .notification.success {
             background-color: #4CAF50;
         }
+
         .notification.error {
             background-color: #f44336;
         }
+
         .notification.show {
             opacity: 1;
             transform: translateX(0);
         }
+
         @keyframes slideIn {
             from {
                 transform: translateX(100%);
+                opacity: 0;
             }
             to {
                 transform: translateX(0);
+                opacity: 1;
             }
         }
+
         .notification.animate {
-            animation: slideIn 0.5s ease-out;
+            animation: slideIn 0.3s ease-out forwards;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Perfil de Usuario</h1>
     </header>
 
     <nav>
@@ -103,7 +313,6 @@
             <li><a href="./agendarCita.html">Agendar Cita</a></li>
             <li><a href="./blog.html">Blog</a></li>
             <li><a href="./informacion.html">Información de Vacunas</a></li>
-            <li id="authMenuItem"><a href="./inicioSesion.html">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
@@ -112,10 +321,10 @@
             <h2>Perfil de Usuario</h2>
             <div>
                 <h3>Información Personal</h3>
-                <p><strong>Nombre:</strong> <span id="nombreUsuario"></span></p>
-                <p><strong>Email:</strong> <span id="emailUsuario"></span></p>
-                <button class="cta-button" onclick="editarPerfilUsuario()">Editar Perfil</button>
-                <button class="cta-button" onclick="cerrarSesionUsuario()">Cerrar Sesión</button>
+                <p><strong>Nombre:</strong> <span id="userName"></span></p>
+                <p><strong>Email:</strong> <span id="userEmail"></span></p>
+                <button class="cta-button" id="editarPerfilBtn">Editar Perfil</button>
+                <button class="cta-button" id="cerrarSesionBtn">Cerrar Sesión</button>
             </div>
         </section>
 
@@ -150,26 +359,36 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc, arrayUnion, setDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
         import { firebaseConfig } from './scripts/firebase-config.js';
         import { initializeMenu } from './scripts/menuHandler.js';
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        // Al principio del archivo, después de las importaciones
+        let app, auth, db;
 
-        function showNotification(message, type) {
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            showNotification('Error al inicializar la aplicación', 'error');
+        }
+
+        // notifications.js
+        export function showNotification(message, type) {
             const notification = document.createElement('div');
             notification.classList.add('notification', type, 'animate');
             notification.textContent = message;
             document.body.appendChild(notification);
 
+            // Mostrar la notificación
             setTimeout(() => {
                 notification.classList.add('show');
             }, 10);
 
+            // Ocultar y remover la notificación
             setTimeout(() => {
                 notification.classList.remove('show');
                 setTimeout(() => {
@@ -179,39 +398,70 @@
         }
 
         function updateUserInfo(user) {
-            document.getElementById('userName').textContent = user.displayName || 'N/A';
-            document.getElementById('userEmail').textContent = user.email;
+            const userNameElement = document.getElementById('userName');
+            const userEmailElement = document.getElementById('userEmail');
+            
+                if (userNameElement && userEmailElement) {
+                    userNameElement.textContent = user.displayName || 'N/A';
+                    userEmailElement.textContent = user.email;
+                } else {
+                    console.error('Elementos de usuario no encontrados en el DOM');
+                }
         }
 
+        // Modifica la sección del script que maneja las mascotas:
         async function loadUserPets(userId) {
-            const userRef = doc(db, "users", userId);
-            const userSnap = await getDoc(userRef);
+            try {
+                const userRef = doc(db, "users", userId);
+                const userSnap = await getDoc(userRef);
 
-            if (userSnap.exists()) {
-                const userData = userSnap.data();
                 const petList = document.getElementById('petList');
                 petList.innerHTML = ''; // Clear existing list
 
-                if (userData.pets && userData.pets.length > 0) {
-                    userData.pets.forEach(pet => {
+                if (userSnap.exists()) {
+                    const userData = userSnap.data();
+                    if (userData.pets && userData.pets.length > 0) {
+                        userData.pets.forEach(pet => {
+                            const li = document.createElement('li');
+                            li.className = 'pet-item';
+                            li.textContent = `${pet.name} - ${pet.type}, ${pet.age} años`;
+                            petList.appendChild(li);
+                        });
+                    } else {
                         const li = document.createElement('li');
-                        li.className = 'pet-item';
-                        li.textContent = `${pet.name} - ${pet.type}, ${pet.age} años`;
+                        li.textContent = 'No tienes mascotas registradas.';
                         petList.appendChild(li);
-                    });
+                    }
                 } else {
+                    // Si el documento no existe, créalo
+                    await setDoc(userRef, { pets: [] });
                     const li = document.createElement('li');
                     li.textContent = 'No tienes mascotas registradas.';
                     petList.appendChild(li);
                 }
+            } catch (error) {
+                console.error("Error loading pets:", error);
+                showNotification('Error al cargar las mascotas', 'error');
             }
         }
 
         async function addPet(userId, petData) {
-            const userRef = doc(db, "users", userId);
-            await updateDoc(userRef, {
-                pets: arrayUnion(petData)
-            });
+            try {
+                const userRef = doc(db, "users", userId);
+                const userDoc = await getDoc(userRef);
+                
+                if (!userDoc.exists()) {
+                    await setDoc(userRef, { pets: [petData] });
+                } else {
+                    await updateDoc(userRef, {
+                        pets: arrayUnion(petData)
+                    });
+                }
+                return true;
+            } catch (error) {
+                console.error("Error adding pet:", error);
+                throw error;
+            }
         }
 
         document.getElementById('addPetForm').addEventListener('submit', async (e) => {
@@ -246,12 +496,21 @@
             }
         });
 
-        window.cerrarSesionUsuario = async function() {
-            await cerrarSesion();
+     // Función para cerrar sesión
+     async function cerrarSesion() {
+            try {
+                await signOut(auth);
+                window.location.href = './inicioSesion.html';
+            } catch (error) {
+                console.error("Error al cerrar sesión:", error);
+                showNotification('Error al cerrar sesión', 'error');
+            }
         }
 
-        window.editarPerfilUsuario = function() {
-            editarPerfil();
+      // Función para editar perfil
+      function editarPerfil() {
+            // Implementa la lógica de edición de perfil aquí
+            console.log("Editar perfil");
         }
 
         window.agregarMascotaUsuario = function() {
@@ -259,7 +518,33 @@
         }
 
         document.addEventListener('DOMContentLoaded', initializeMenu);
+         // Agregar event listeners cuando el DOM esté cargado
+         document.addEventListener('DOMContentLoaded', () => {
+            const cerrarSesionBtn = document.getElementById('cerrarSesionBtn');
+            const editarPerfilBtn = document.getElementById('editarPerfilBtn');
+
+            if (cerrarSesionBtn) {
+                cerrarSesionBtn.addEventListener('click', cerrarSesion);
+            }
+
+            if (editarPerfilBtn) {
+                editarPerfilBtn.addEventListener('click', editarPerfil);
+            }
+
+            initializeMenu();
+        });
     </script>
+        <script type="module" src="./scripts/auth.js"></script>
+        <script>
+            function toggleMenu() {
+                var menu = document.getElementById("menu");
+                menu.classList.toggle("show");
+            }
+        </script>
+        <script type="module">
+            import { initializeMenu } from './scripts/menuHandler.js';
+            document.addEventListener('DOMContentLoaded', initializeMenu);
+        </script>
 </body>
 </html>
 

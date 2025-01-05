@@ -4,14 +4,16 @@ import { cargarPerfilUsuario, cargarMascotas, cargarCitas } from '/scripts/userP
 
 export function showNotification(message, type) {
     const notification = document.createElement('div');
-    notification.classList.add('notification', type);
+    notification.classList.add('notification', type, 'animate'); // Agregamos la clase animate
     notification.textContent = message;
     document.body.appendChild(notification);
 
+    // Mostrar la notificación con animación
     setTimeout(() => {
         notification.classList.add('show');
     }, 10);
 
+    // Ocultar y remover la notificación
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => {
@@ -24,6 +26,9 @@ export async function iniciarSesion(email, password) {
     try {
         await signInWithEmailAndPassword(auth, email, password);
         showNotification('Inicio de sesión exitoso', 'success');
+        setTimeout(() => {
+            window.location.href = './perfilUsuario.html';
+        }, 1000);
         return true;
     } catch (error) {
         console.error('Error de inicio de sesión:', error);
@@ -36,6 +41,9 @@ export async function cerrarSesion() {
     try {
         await signOut(auth);
         showNotification('Has cerrado sesión correctamente', 'success');
+        setTimeout(() => {
+            window.location.href = './index.html';
+        }, 1000); // Espera 1 segundo para mostrar la notificación antes de redirigir
         return true;
     } catch (error) {
         console.error('Error al cerrar sesión:', error);
@@ -45,19 +53,15 @@ export async function cerrarSesion() {
 }
 
 function updateUIForAuthState(user) {
-    if (window.location.pathname.includes('inicioSesion.html')) {
-        const loginSection = document.getElementById('login');
-        const perfilSection = document.getElementById('perfil');
-        
-        if (user) {
-            loginSection.style.display = 'none';
-            perfilSection.style.display = 'block';
-            cargarPerfilUsuario();
-            cargarMascotas();
-            cargarCitas();
-        } else {
-            loginSection.style.display = 'block';
-            perfilSection.style.display = 'none';
+    const currentPath = window.location.pathname;
+    
+    if (user) {
+        if (currentPath.includes('inicioSesion.html')) {
+            window.location.href = './perfilUsuario.html';
+        }
+    } else {
+        if (currentPath.includes('perfilUsuario.html')) {
+            window.location.href = './inicioSesion.html';
         }
     }
 }
@@ -67,4 +71,5 @@ export function initAuth() {
         updateUIForAuthState(user);
     });
 }
+
 document.addEventListener('DOMContentLoaded', initAuth);
